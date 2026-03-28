@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="sv">
 <head>
@@ -11,71 +12,101 @@
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
 
-/* Design för knappar, popup och vagn */
+/* MODAL & BUTTONS */
 .btn-group { display: flex; gap: 5px; margin-top: 10px; }
 .pb-small { flex: 1; padding: 8px; border-radius: 7px; font-weight: 700; font-size: 11px; cursor: pointer; border: none; text-align: center; text-decoration: none; }
 .btn-info { background: var(--card2); color: var(--text); border: 1px solid var(--border) !important; }
 .btn-buy { background: var(--accent); color: #000; }
-
 .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); }
-.modal-content { background: var(--card); margin: 50px auto; padding: 20px; border: 1px solid var(--border); width: 90%; max-width: 500px; border-radius: var(--r); position: relative; color: var(--text); }
+.modal-content { background: var(--card); margin: 50px auto; padding: 20px; border: 1px solid var(--border); width: 90%; max-width: 500px; border-radius: var(--r); position: relative; }
 .close { position: absolute; right: 15px; top: 10px; font-size: 28px; cursor: pointer; color: var(--muted); }
 
+/* CART SIDEBAR */
 #cart-sidebar { display: none; position: fixed; right: 0; top: 0; width: 100%; height: 100%; z-index: 3000; background: rgba(0,0,0,0.8); }
-.cart-content { background: var(--card); width: 80%; max-width: 350px; height: 100%; margin-left: auto; padding: 20px; position: relative; border-left: 1px solid var(--border); }
+.cart-content { background: var(--card); width: 85%; max-width: 350px; height: 100%; margin-left: auto; padding: 20px; border-left: 1px solid var(--border); overflow-y:auto; }
 
-/* Din befintliga design */
+/* FIXade POSITIONER FÖR KNAPPAR */
+#cart-fab { position: fixed; bottom: 85px; right: 14px; background: var(--accent); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; color: #000; z-index: 1000; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+.chat-fab { position: fixed; bottom: 18px; right: 14px; z-index: 999; background: var(--card2); border: 1px solid var(--border); border-radius: 24px; padding: 9px 13px; display: flex; align-items: center; gap: 7px; cursor: pointer; }
+
+/* DESIGN FRÅN DIN ORIGINALFIL */
 .ticker-wrap{background:var(--accent);overflow:hidden;padding:6px 0;white-space:nowrap}
 .ticker{display:inline-block;animation:ticker 30s linear infinite}
 @keyframes ticker{from{transform:translateX(100vw)}to{transform:translateX(-100%)}}
 .ticker span{font-size:11px;font-weight:800;color:#000;margin-right:40px}
 header{background:var(--card);padding:14px 16px;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:200}
-.hdr{max-width:560px;margin:auto;display:flex;align-items:center;gap:10px}
 .logo-box{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-size:20px}
 .wrap{max-width:560px;margin:0 auto;padding:20px 13px 120px}
-.p-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;width:185px;flex-shrink:0;position:relative; margin-bottom: 20px;}
+.car-track{display:flex;gap:11px;overflow-x:auto; padding-bottom:15px;}
+.p-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;width:185px;flex-shrink:0;position:relative;}
 .p-card img{width:100%;height:150px;object-fit:cover;cursor:pointer}
 .pi{padding:11px}
-.pn{font-size:12px;font-weight:600;margin-bottom:5px}
+.pn{font-size:12px;font-weight:600;margin-bottom:5px; height:35px; overflow:hidden;}
 .pp{font-family:'Syne',sans-serif;font-size:19px;color:var(--accent2);font-weight:700}
 .viewers{position:absolute;top:8px;right:8px;background:rgba(0,0,0,.75);border-radius:20px;padding:2px 7px;font-size:9px;color:var(--green);font-weight:700}
-.car-track{display:flex;gap:11px;overflow-x:auto}
 </style>
 </head>
 <body>
 
-<div style="padding: 20px; text-align: center; border-bottom: 1px solid var(--border);">
-  <h1 style="font-family:Syne; font-size: 22px;">All-in1 ShopStar – Smarta hem & elsparprylar under 500 kr</h1>
-  <p style="font-size: 13px; color: var(--muted); margin-top: 5px;">Spara pengar på elräkningen med smarta fynd under 300-500 kr!</p>
+<div style="padding: 15px; text-align: center; border-bottom: 1px solid var(--border);">
+  <h1 style="font-family:Syne; font-size:18px;">All-in1 ShopStar – Smarta Hem & Fynd under 500 kr</h1>
+  <p style="font-size:11px; color:var(--muted);">Handplockade gadgets som sparar el och pengar</p>
 </div>
 
 <header>
-<div class="hdr">
-<div class="logo-box">&#9889;</div>
-<div class="logo-txt"><strong>All-in1 ShopStar</strong></div>
+<div style="max-width:560px; margin:auto; display:flex; align-items:center; gap:10px;">
+  <div class="logo-box">⚡</div>
+  <div style="font-family:Syne; font-weight:800;">All-in1 ShopStar</div>
 </div>
 </header>
 
 <div class="wrap">
-  <div style="margin-bottom: 15px; font-weight: 800; font-family: Syne;">TOPPVAL JUST NU</div>
+  <h3 style="font-family:Syne; margin-bottom:15px; font-size:14px; color:var(--accent);">SMARTA HEM FYND</h3>
   <div class="car-track">
     <div class="p-card">
       <div class="viewers">12 kollar</div>
-      <img src="img/cam1.jpg" alt="Tapo Plug" onclick="openModal('tapo')">
+      <img src="img/cam1.jpg" onclick="openModal('tapo')">
       <div class="pi">
         <div class="pn">TP-Link Tapo Smart Plug P115</div>
         <div class="pp">249 kr</div>
         <div class="btn-group">
-          <button class="pb-small btn-info" onclick="openModal('tapo')">Läs mer</button>
+          <button class="pb-small btn-info" onclick="openModal('tapo')">Info</button>
           <a href="https://amzn.to/4lRNDoo" target="_blank" class="pb-small btn-buy">Köp</a>
+        </div>
+      </div>
+    </div>
+    <div class="p-card">
+      <div class="viewers">15 kollar</div>
+      <img src="img/fire1.jpg" onclick="openModal('firetv')">
+      <div class="pi">
+        <div class="pn">Amazon Fire TV Stick HD</div>
+        <div class="pp">399 kr</div>
+        <div class="btn-group">
+          <button class="pb-small btn-info" onclick="openModal('firetv')">Info</button>
+          <a href="https://amzn.to/3WvXJ9L" target="_blank" class="pb-small btn-buy">Köp</a>
+        </div>
+      </div>
+    </div>
+    <div class="p-card">
+      <div class="viewers">9 kollar</div>
+      <img src="img/plug1.jpg" onclick="openModal('camera')">
+      <div class="pi">
+        <div class="pn">Tapo C200 Overvakningskamera</div>
+        <div class="pp">349 kr</div>
+        <div class="btn-group">
+          <button class="pb-small btn-info" onclick="openModal('camera')">Info</button>
+          <a href="https://amzn.to/3V2Y7Zt" target="_blank" class="pb-small btn-buy">Köp</a>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<div onclick="toggleCart()" style="position:fixed; bottom:20px; right:20px; background:var(--accent); width:60px; height:60px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:24px; color:#000; z-index:1000; cursor:pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
-  🛒 <span id="cart-count" style="position:absolute; top:5px; right:5px; background:red; color:white; font-size:12px; padding:2px 6px; border-radius:50%;">0</span>
+<div id="cart-fab" onclick="toggleCart()">🛒 <span id="cart-count" style="position:absolute; top:0; right:0; background:red; color:white; font-size:10px; padding:2px 5px; border-radius:50%;">0</span></div>
+
+<div class="chat-fab">
+  <span style="width:7px; height:7px; background:var(--green); border-radius:50%;"></span>
+  <span style="font-size:11px;">AI Hjälp Live</span>
 </div>
 
 <div id="productModal" class="modal">
@@ -91,66 +122,48 @@ header{background:var(--card);padding:14px 16px;border-bottom:1px solid var(--bo
     <h2 style="font-family:Syne; margin-bottom:20px;">Din Varukorg</h2>
     <div id="cart-items"></div>
     <div id="cart-total" style="margin-top:20px; font-weight:bold; border-top:1px solid var(--border); padding-top:10px;"></div>
-    <p style="font-size:10px; color:var(--muted); margin-top:20px;">Varje vara köps separat på Amazon för att säkra din frakt och garanti.</p>
   </div>
 </div>
 
 <script>
 let cart = [];
-
 function openModal(id) {
   const m = document.getElementById('productModal');
   const b = document.getElementById('modalBody');
-  if(id === 'tapo') {
-    b.innerHTML = `
-      <h2 style="font-family:Syne; margin-bottom:10px;">Tapo Smart Plug P115</h2>
-      <img src="img/cam1.jpg" style="width:100%; border-radius:10px; margin-bottom:15px;">
-      <p style="font-size:14px; line-height:1.5;">Mät din elförbrukning direkt i mobilen. Spara hundralappar genom att stänga av standby-enheter automatiskt!</p>
-      <button onclick="addToCart('Tapo Smart Plug', '249 kr', 'https://amzn.to/4lRNDoo')" style="width:100%; background:var(--accent2); color:white; border:none; padding:12px; border-radius:10px; margin-top:15px; font-weight:800; cursor:pointer;">➕ Lägg i korg</button>
-    `;
-  }
+  const items = {
+    tapo: { n: 'Tapo Smart Plug P115', p: '249 kr', l: 'https://amzn.to/4lRNDoo', i: 'img/cam1.jpg', d: 'Mät din elförbrukning direkt i mobilen och spara pengar på elräkningen.' },
+    firetv: { n: 'Fire TV Stick HD', p: '399 kr', l: 'https://amzn.to/3WvXJ9L', i: 'img/fire1.jpg', d: 'Gör din TV smartare med röststyrning och alla dina favoritappar.' },
+    camera: { n: 'Tapo C200 Kamera', p: '349 kr', l: 'https://amzn.to/3V2Y7Zt', i: 'img/plug1.jpg', d: 'Prisvärd säkerhet med nattseende och rörelselarm till mobilen.' }
+  };
+  const item = items[id];
+  b.innerHTML = `
+    <h2 style="font-family:Syne; margin-bottom:10px;">${item.n}</h2>
+    <img src="${item.i}" style="width:100%; border-radius:10px; margin-bottom:15px;">
+    <p style="font-size:14px; margin-bottom:15px;">${item.d}</p>
+    <button onclick="addToCart('${item.n}', '${item.p}', '${item.l}')" style="width:100%; background:var(--accent); color:#000; border:none; padding:12px; border-radius:10px; font-weight:800; cursor:pointer;">➕ Lägg i korg</button>
+  `;
   m.style.display = "block";
 }
-
 function closeModal() { document.getElementById('productModal').style.display = "none"; }
-
-function addToCart(name, price, link) {
-  cart.push({name, price, link});
-  updateCartUI();
-  closeModal();
-  toggleCart();
+function toggleCart() { const s = document.getElementById('cart-sidebar'); s.style.display = (s.style.display === 'block') ? 'none' : 'block'; }
+function addToCart(n, p, l) {
+  cart.push({name:n, price:p, link:l});
+  updateUI(); closeModal(); toggleCart();
 }
-
-function updateCartUI() {
+function updateUI() {
   const itemsDiv = document.getElementById('cart-items');
-  const countSpan = document.getElementById('cart-count');
   const totalDiv = document.getElementById('cart-total');
-  itemsDiv.innerHTML = "";
-  let total = 0;
-  cart.forEach((item, index) => {
+  let total = 0; itemsDiv.innerHTML = "";
+  cart.forEach((item, i) => {
     total += parseInt(item.price);
-    itemsDiv.innerHTML += `
-      <div style="padding:10px 0; border-bottom:1px solid var(--border);">
-        <div style="font-size:13px;">${item.name}</div>
-        <div style="color:var(--accent2); font-weight:bold;">${item.price}</div>
-        <a href="${item.link}" target="_blank" style="font-size:11px; color:var(--blue);">Köp på Amazon ↗</a>
-        <span onclick="removeFromCart(${index})" style="color:red; font-size:10px; cursor:pointer; margin-left:10px;">Ta bort</span>
-      </div>`;
+    itemsDiv.innerHTML += `<div style="padding:10px 0; border-bottom:1px solid var(--border); display:flex; justify-content:space-between;">
+      <div><div style="font-size:12px; font-weight:bold;">${item.name}</div><a href="${item.link}" target="_blank" style="font-size:10px; color:var(--blue);">Köp på Amazon ↗</a></div>
+      <span onclick="cart.splice(${i},1); updateUI();" style="color:red; cursor:pointer;">✕</span></div>`;
   });
-  countSpan.innerText = cart.length;
-  totalDiv.innerText = "Summa: ca " + total + " kr";
+  document.getElementById('cart-count').innerText = cart.length;
+  totalDiv.innerText = "Totalt: ca " + total + " kr";
 }
-
-function removeFromCart(index) { cart.splice(index, 1); updateCartUI(); }
-function toggleCart() { 
-  const s = document.getElementById('cart-sidebar');
-  s.style.display = (s.style.display === 'block') ? 'none' : 'block';
-}
-
-window.onclick = function(e) {
-  if (e.target.className === 'modal') { closeModal(); document.getElementById('cart-sidebar').style.display='none'; }
-}
+window.onclick = function(e) { if (e.target.className === 'modal') closeModal(); }
 </script>
-
 </body>
 </html>
