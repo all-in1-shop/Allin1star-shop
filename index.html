@@ -3,499 +3,151 @@
 <head>
 <meta charset="UTF-8">
 <meta name="google-site-verification" content="asdk3BDDd77LFKQXCsuj9YeyndC7qQp-8gPuhhYEzbw" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <title>All-in1 ShopStar - Smarta Hem under 500kr | Basta fynd Sverige</title>
-<meta name="description" content="Hitta smarta hem-produkter, halsa och fitness under 500kr. Handplockade Amazon-fynd med 4.5+ betyg. Bevisad kvalitet till basta pris i Sverige.">
-<meta name="keywords" content="smarta hem, smart plug, tapo, fire tv stick, amazon fynd, billiga produkter, Sverige, under 500kr, kamera, vitamin, protein">
-<meta name="robots" content="index, follow">
-<meta property="og:title" content="All-in1 ShopStar - Smarta Hem under 500kr">
-<meta property="og:description" content="Bevisade produkter som gor livet enklare. Fynda nu till basta pris!">
-<meta property="og:type" content="website">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#0b0c10;--card:#13151c;--card2:#1a1d26;--border:#252836;--accent:#f5a623;--accent2:#ff4e50;--green:#00e676;--blue:#4fc3f7;--text:#f0f2f8;--muted:#7a7f94;--r:14px}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+
+/* NYTT: Design för knappar och popup */
+.btn-group { display: flex; gap: 5px; margin-top: 10px; }
+.pb-small { flex: 1; padding: 8px; border-radius: 7px; font-weight: 700; font-size: 11px; cursor: pointer; border: none; text-align: center; text-decoration: none; }
+.btn-info { background: var(--card2); color: var(--text); border: 1px solid var(--border) !important; }
+.btn-buy { background: var(--accent); color: #000; }
+
+.modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); padding-top: 50px; }
+.modal-content { background: var(--card); margin: auto; padding: 20px; border: 1px solid var(--border); width: 90%; max-width: 500px; border-radius: var(--r); position: relative; }
+.close { position: absolute; right: 15px; top: 10px; font-size: 28px; cursor: pointer; color: var(--muted); }
+
+/* Din befintliga design fortsätter här... */
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 .fu{animation:fadeUp .5s ease both}
 .ticker-wrap{background:var(--accent);overflow:hidden;padding:6px 0;white-space:nowrap}
 .ticker{display:inline-block;animation:ticker 30s linear infinite}
 @keyframes ticker{from{transform:translateX(100vw)}to{transform:translateX(-100%)}}
 .ticker span{font-size:11px;font-weight:800;color:#000;margin-right:40px}
-.ticker span::before{content:"★ "}
 .live-bar{background:var(--card2);border-bottom:1px solid var(--border);padding:6px 16px;display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap}
 .live-dot{width:7px;height:7px;border-radius:50%;background:#ff4e50;animation:blink 1s infinite;flex-shrink:0}
 .live-txt{font-size:11px;color:var(--muted)}
-.live-txt strong{color:var(--accent2)}
-.amz-badge{background:rgba(245,166,35,.1);border:1px solid rgba(245,166,35,.3);color:var(--accent);font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px}
 header{background:var(--card);padding:14px 16px;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:200}
 .hdr{max-width:560px;margin:auto;display:flex;align-items:center;gap:10px}
 .logo-box{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
 .logo-txt strong{font-family:'Syne',sans-serif;font-size:16px}
-.logo-txt span{font-size:10px;color:var(--muted);display:block}
-.soc-row{margin-left:auto;display:flex;gap:6px}
-.soc{background:var(--card2);border:1px solid var(--border);color:var(--muted);padding:4px 9px;border-radius:7px;font-size:10px;font-weight:600;text-decoration:none}
-.hero{background:linear-gradient(135deg,#0f1118,#15112a 50%,#0f1a1f);padding:26px 16px 22px;text-align:center;border-bottom:1px solid var(--border);position:relative;overflow:hidden}
-.h-tag{display:inline-block;background:rgba(245,166,35,.12);border:1px solid rgba(245,166,35,.35);color:var(--accent);font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:3px 11px;border-radius:20px;margin-bottom:10px}
-.hero h1{font-family:'Syne',sans-serif;font-size:26px;line-height:1.15;margin-bottom:8px}
-.hero h1 em{color:var(--accent);font-style:normal}
-.hero p{font-size:13px;color:var(--muted);max-width:320px;margin:0 auto 16px;line-height:1.6}
-.stats{display:flex;justify-content:center;gap:18px}
-.stat strong{display:block;font-family:'Syne',sans-serif;font-size:17px;color:var(--accent)}
-.stat span{font-size:10px;color:var(--muted)}
-.trust-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:14px 16px}
-.trust{background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:7px 12px;font-size:10px;color:var(--muted);display:flex;align-items:center;gap:5px}
-.trust strong{color:var(--text);font-size:11px}
+.hero{background:linear-gradient(135deg,#0f1118,#15112a 50%,#0f1a1f);padding:26px 16px 22px;text-align:center;border-bottom:1px solid var(--border)}
 .nav-wrap{background:var(--card);border-bottom:1px solid var(--border);position:sticky;top:68px;z-index:190}
-.nav-tabs{display:flex;overflow-x:auto;gap:6px;padding:9px 13px;scrollbar-width:none;max-width:560px;margin:auto}
-.nav-tabs::-webkit-scrollbar{display:none}
-.tab{background:transparent;border:1px solid var(--border);color:var(--muted);padding:6px 15px;border-radius:20px;font-size:12px;font-weight:600;white-space:nowrap;cursor:pointer;flex-shrink:0}
-.tab.active{background:var(--accent);color:#000;border-color:var(--accent);font-weight:700}
+.nav-tabs{display:flex;overflow-x:auto;gap:6px;padding:9px 13px;max-width:560px;margin:auto}
+.tab{background:transparent;border:1px solid var(--border);color:var(--muted);padding:6px 15px;border-radius:20px;font-size:12px;font-weight:600;white-space:nowrap;cursor:pointer}
+.tab.active{background:var(--accent);color:#000;border-color:var(--accent)}
 .wrap{max-width:560px;margin:0 auto;padding:0 13px 120px}
-.sec-head{display:flex;align-items:center;justify-content:space-between;margin:26px 0 12px}
-.sec-title{font-family:'Syne',sans-serif;font-size:17px;font-weight:800}
-.sec-title small{display:block;font-family:'DM Sans',sans-serif;font-size:11px;color:var(--muted);font-weight:400;margin-top:1px}
-.see-all{font-size:11px;color:var(--accent);font-weight:700;background:rgba(245,166,35,.08);padding:5px 11px;border-radius:8px;border:1px solid rgba(245,166,35,.2);cursor:pointer;display:inline-block}
-.car-track{display:flex;gap:11px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:2px}
-.car-track::-webkit-scrollbar{display:none}
-.car-nav{display:flex;justify-content:space-between;margin-top:9px;gap:7px}
-.c-btn{flex:1;background:var(--card2);border:1px solid var(--border);color:var(--text);padding:8px;border-radius:10px;font-size:14px;cursor:pointer;font-family:'DM Sans',sans-serif}
-.c-count{background:var(--card2);border:1px solid var(--border);padding:8px 12px;border-radius:10px;font-size:10px;color:var(--muted);display:flex;align-items:center}
-.p-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;flex-shrink:0;width:185px;scroll-snap-align:start;display:block;text-decoration:none;color:inherit;position:relative}
-.p-card .iw{height:150px;background:#1a1a2e;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.p-card .iw img{width:100%;height:150px;object-fit:cover}
-.p-card .iw .ei{color:var(--muted);font-size:38px;width:100%;display:flex;align-items:center;justify-content:center;height:150px}
-.p-card .pi{padding:11px}
-.p-card .pn{font-size:12px;font-weight:600;line-height:1.35;margin-bottom:5px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.p-card .pp{font-family:'Syne',sans-serif;font-size:19px;color:var(--accent2);font-weight:700}
-.p-card .ps{font-size:10px;color:var(--muted)}
-.p-card .pst{font-size:10px;color:var(--accent);margin:3px 0}
-.p-card .pb{display:block;background:var(--accent);color:#000;text-align:center;padding:8px;border-radius:7px;font-weight:700;font-size:12px;margin-top:9px}
+.p-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;width:185px;flex-shrink:0;position:relative}
+.p-card img{width:100%;height:150px;object-fit:cover;cursor:pointer}
+.pi{padding:11px}
+.pn{font-size:12px;font-weight:600;margin-bottom:5px}
+.pp{font-family:'Syne',sans-serif;font-size:19px;color:var(--accent2);font-weight:700}
+.badge{display:inline-block;font-size:9px;font-weight:800;padding:2px 7px;border-radius:5px;margin-bottom:5px}
+.bb{background:#00e676;color:#000}
 .viewers{position:absolute;top:8px;right:8px;background:rgba(0,0,0,.75);border-radius:20px;padding:2px 7px;font-size:9px;color:var(--green);font-weight:700;z-index:2}
-.badge{display:inline-block;font-size:9px;font-weight:800;letter-spacing:.7px;text-transform:uppercase;padding:2px 7px;border-radius:5px;margin-bottom:5px}
-.bb{background:#00e676;color:#000}.bh{background:var(--accent2);color:#fff}.bn{background:var(--blue);color:#000}.bs{background:var(--accent);color:#000}
-.fc{background:var(--card);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:13px;display:block;text-decoration:none;color:inherit;position:relative}
-.fcs{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;height:220px;scrollbar-width:none;background:#1a1a2e}
-.fcs::-webkit-scrollbar{display:none}
-.fcs img{min-width:100%;object-fit:cover;scroll-snap-align:start;height:220px}
-.fb{padding:15px}
-.fb h3{font-size:15px;font-weight:700;line-height:1.35;margin:7px 0 5px}
-.fb .desc{font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:11px}
-.fp-row{display:flex;align-items:flex-end;gap:10px;margin-bottom:13px}
-.fp{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:var(--accent2)}
-.fp-n{font-size:10px;color:var(--muted);padding-bottom:3px}
-.fbtn{display:block;background:linear-gradient(90deg,var(--accent),#e8910a);color:#000;text-align:center;padding:14px;border-radius:10px;font-weight:800;font-size:14px;margin-top:4px}
-.promo{background:linear-gradient(135deg,#141024,#0f1a1f);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin:22px 0;text-align:center}
-.promo h2{font-family:'Syne',sans-serif;font-size:15px;margin-bottom:5px}
-.promo p{font-size:12px;color:var(--muted);line-height:1.6}
-.ptag{display:inline-block;background:var(--green);color:#000;font-size:9px;font-weight:800;padding:3px 9px;border-radius:20px;margin-bottom:8px;letter-spacing:1px;text-transform:uppercase}
-.chat-fab{position:fixed;bottom:18px;right:14px;z-index:999;background:var(--card2);border:1px solid var(--border);border-radius:24px;padding:9px 13px;display:flex;align-items:center;gap:7px;cursor:pointer;box-shadow:0 4px 18px rgba(0,0,0,.5);font-family:'DM Sans',sans-serif}
-.gdot{width:7px;height:7px;border-radius:50%;background:var(--green);flex-shrink:0;box-shadow:0 0 5px var(--green);animation:blink 2s infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
-.chat-fab span{font-size:11px;color:var(--muted);font-weight:500}
-.chat-win{position:fixed;bottom:72px;right:13px;z-index:998;width:calc(100vw - 26px);max-width:330px;background:var(--card);border:1px solid var(--border);border-radius:18px;box-shadow:0 14px 44px rgba(0,0,0,.7);display:none;flex-direction:column;overflow:hidden}
-.chat-win.open{display:flex}
-.ch{padding:12px 14px;background:var(--card2);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:9px}
-.cav{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--green),#009624);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
-.chi strong{display:block;font-size:13px;font-weight:700}
-.chi small{font-size:10px;color:var(--green)}
-.cc{margin-left:auto;background:none;border:none;color:var(--muted);font-size:20px;cursor:pointer}
-.cms{overflow-y:auto;padding:12px;min-height:150px;max-height:250px;display:flex;flex-direction:column;gap:8px}
-.msg{max-width:88%;padding:9px 12px;border-radius:13px;font-size:12px;line-height:1.55}
-.msg.bot{background:var(--card2);border:1px solid var(--border);align-self:flex-start}
-.msg.user{background:var(--green);color:#000;font-weight:600;align-self:flex-end}
-.cfm{padding:10px;border-top:1px solid var(--border);display:flex;gap:7px}
-.ci{flex:1;background:var(--card2);border:1px solid var(--border);border-radius:9px;padding:9px 12px;color:var(--text);font-size:12px;font-family:'DM Sans',sans-serif;outline:none}
-.cs{background:var(--green);border:none;border-radius:9px;padding:9px 12px;color:#000;font-weight:800;font-size:14px;cursor:pointer}
-footer{background:var(--card);border-top:1px solid var(--border);padding:18px;text-align:center}
-footer p{font-size:11px;color:var(--muted);line-height:1.7}
-footer a{color:var(--accent);text-decoration:none}
+.car-track{display:flex;gap:11px;overflow-x:auto;padding-bottom:2px}
 .sb{display:none}.sb.on{display:block}
+footer{background:var(--card);border-top:1px solid var(--border);padding:18px;text-align:center}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
 </style>
 </head>
 <body>
 
-<div class="ticker-wrap">
-<div class="ticker">
-<span>Smart Plug Tapo P115 - 249kr</span>
-<span>Fire TV Stick HD - 399kr</span>
-<span>Tapo Kamera C200 - 349kr</span>
-<span>Omega-3 240 kapslar - 249kr</span>
-<span>Vitamin D3 400tab - 179kr</span>
-<span>Whey Protein Chocolate - 389kr</span>
-<span>OneBlade 5-pack - 279kr</span>
-<span>Vitamin B Complex 365tab - 199kr</span>
-<span>Smart Plug Tapo P115 - 249kr</span>
-<span>Fire TV Stick HD - 399kr</span>
-</div>
+<div style="padding: 10px; text-align: center;">
+  <h1>All-in1 ShopStar – Smarta hem & elsparprylar under 500 kr</h1>
+  <p style="font-size: 12px; color: var(--muted);">Hitta smarta hem gadgets som sparar el och pengar!</p>
 </div>
 
-<div class="live-bar">
-<span class="live-dot"></span>
-<span class="live-txt"><strong id="viewCount">31</strong> personer kollar just nu</span>
-<span class="amz-badge">★ Amazon Affiliate Partner</span>
+<div class="ticker-wrap">
+<div class="ticker">
+<span>Smart Plug Tapo P115 - 249kr</span><span>Fire TV Stick HD - 399kr</span><span>Tapo Kamera C200 - 349kr</span>
+</div>
 </div>
 
 <header>
 <div class="hdr">
 <div class="logo-box">&#9889;</div>
-<div class="logo-txt">
-<strong>All-in1 ShopStar</strong>
-<span>Smarta fynd &middot; Bevisad kvalitet</span>
-</div>
-<div class="soc-row">
-<a href="https://www.youtube.com/@Allin1star-w5n" class="soc" target="_blank">&#9654; YT</a>
-<a href="https://www.facebook.com/Allin1star" class="soc" target="_blank">FB</a>
-</div>
+<div class="logo-txt"><strong>All-in1 ShopStar</strong><span>Smarta fynd</span></div>
 </div>
 </header>
-
-<div class="hero fu">
-<div class="h-tag">TOPPVAL 2026 &middot; SVERIGE</div>
-<h1>Gor hemmet <em>smartare</em><br>under 500 kr</h1>
-<p>Bevisade produkter som gor livet enklare for hela hushallet. Fynda nu till basta pris!</p>
-<div class="stats">
-<div class="stat"><strong>500+</strong><span>Nojda kunder</span></div>
-<div class="stat"><strong>4.7&#9733;</strong><span>Snittbetyg</span></div>
-<div class="stat"><strong>100%</strong><span>Testat &amp; akta</span></div>
-</div>
+<div id="cart-icon" onclick="toggleCart()" style="position:fixed; bottom:20px; right:20px; background:var(--accent); width:60px; height:60px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:24px; color:#000; z-index:1000; box-shadow:0 4px 15px rgba(0,0,0,0.4); cursor:pointer;">
+  🛒 <span id="cart-count" style="position:absolute; top:5px; right:5px; background:red; color:white; font-size:12px; padding:2px 6px; border-radius:50%;">0</span>
 </div>
 
-<div class="trust-row">
-<div class="trust">&#128274; <strong>Saker kop via Amazon</strong></div>
-<div class="trust">&#9733; <strong>Veriferade recensioner</strong></div>
-<div class="trust">&#128666; <strong>Snabb leverans</strong></div>
-</div>
-
-<div class="nav-wrap">
-<div class="nav-tabs">
-<div class="tab active" onclick="showSec('alla',this)">Alla fynd</div>
-<div class="tab" onclick="showSec('smart',this)">Smarta Hem</div>
-<div class="tab" onclick="showSec('halsa',this)">Halsa</div>
-<div class="tab" onclick="showSec('fitness',this)">Fitness</div>
-</div>
+<div id="cart-sidebar" class="modal">
+  <div class="modal-content" style="margin-right:0; height:100%; max-width:350px; border-radius:0;">
+    <span class="close" onclick="toggleCart()">&times;</span>
+    <h2 style="font-family:Syne;">Din Varukorg</h2>
+    <div id="cart-items" style="margin-top:20px; max-height:70vh; overflow-y:auto;">
+      </div>
+    <div id="cart-total" style="border-top:1px solid var(--border); margin-top:20px; padding-top:10px; font-weight:bold;"></div>
+  </div>
 </div>
 
 <div class="wrap">
-
-<!-- ===== ALLA ===== -->
-<div id="sec-alla" class="sb on">
-
-<div class="sec-head fu">
-<div class="sec-title">&#127968; Smarta Hem<small>Toppval &middot; Under 500 kr</small></div>
-<span class="see-all" onclick="showSec('smart',document.querySelectorAll('.tab')[1])">Se alla &rarr;</span>
+  <div class="sec-head"><div class="sec-title">Toppval för elbesparing</div></div>
+  
+  <div class="car-track">
+    <div class="p-card">
+      <div class="viewers">12 kollar</div>
+      <img src="img/cam1.jpg" alt="Tapo Plug" onclick="openModal('tapo')">
+      <div class="pi">
+        <span class="badge bb">Bäst i test</span>
+        <div class="pn">TP-Link Tapo Smart Plug P115</div>
+        <div class="pp">~249 kr</div>
+        <div class="btn-group">
+          <button class="pb-small btn-info" onclick="openModal('tapo')">Läs mer</button>
+          <a href="https://amzn.to/4lRNDoo" target="_blank" class="pb-small btn-buy">Köp nu</a>
+        </div>
+      </div>
+    </div>
+    
+    </div>
 </div>
 
-<div class="car-track" id="cs1">
-
-<!-- Tapo Smart Plug - cam-bilderna ar plug i verkligheten -->
-<a href="https://amzn.to/4lRNDoo" class="p-card" target="_blank">
-<div class="viewers" id="v1">12 kollar</div>
-<div class="iw"><img src="img/cam1.jpg" onerror="this.parentNode.innerHTML='<div class=ei>&#128268;</div>'" alt="Smart Plug"></div>
-<div class="pi"><span class="badge bb">Bast i test</span><div class="pn">TP-Link Tapo Smart Plug P115</div><div class="pst">&#9733;&#9733;&#9733;&#9733;&#9733; 8200+</div><div class="pp">~249 kr</div><div class="ps">Energimatning &amp; app-styrning</div><div class="pb">Kop nu &rarr;</div></div>
-</a>
-
-<!-- Tapo Kamera - plug-bilderna ar kameran i verkligheten -->
-<a href="https://amzn.to/4lNqByT" class="p-card" target="_blank">
-<div class="viewers" id="v2">8 kollar</div>
-<div class="iw"><img src="img/plug1.jpg" onerror="this.parentNode.innerHTML='<div class=ei>&#128247;</div>'" alt="Kamera"></div>
-<div class="pi"><span class="badge bh">Popular</span><div class="pn">Tapo C200 Overvakningskamera</div><div class="pst">&#9733;&#9733;&#9733;&#9733;&#9733; 12000+</div><div class="pp">~349 kr</div><div class="ps">1080p nattseende rorelsedetekt.</div><div class="pb">Kop nu &rarr;</div></div>
-</a>
-
-<!-- Fire TV Stick -->
-<a href="https://amzn.to/4lyRVR9" class="p-card" target="_blank">
-<div class="viewers" id="v3">15 kollar</div>
-<div class="iw"><img src="img/fire1.jpg" onerror="this.parentNode.innerHTML='<div class=ei>&#128250;</div>'" alt="Fire TV"></div>
-<div class="pi"><span class="badge bn">Nyhet</span><div class="pn">Amazon Fire TV Stick HD</div><div class="pst">&#9733;&#9733;&#9733;&#9733;&#9733; 45000+</div><div class="pp">~399 kr</div><div class="ps">Netflix, Prime, Disney+ mm</div><div class="pb">Kop nu &rarr;</div></div>
-</a>
-
-<!-- Shelly -->
-<a href="https://amzn.to/40I5qoe" class="p-card" target="_blank">
-<div class="viewers" id="v4">7 kollar</div>
-<div class="iw"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&h=150&fit=crop" onerror="this.parentNode.innerHTML='<div class=ei>&#128161;</div>'" alt="Shelly"></div>
-<div class="pi"><span class="badge bs">Fynd</span><div class="pn">Shelly Plug S Smart Elmatare</div><div class="pst">&#9733;&#9733;&#9733;&#9733;&#9733; 4800+</div><div class="pp">219 kr</div><div class="ps">Stoppar el-tjuvar automatiskt</div><div class="pb">Kop nu &rarr;</div></div>
-</a>
-
+<div id="productModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <div id="modalBody"></div>
+  </div>
 </div>
-<div class="car-nav">
-<button class="c-btn" onclick="scrollC('cs1',-1)">&larr; Bakat</button>
-<div class="c-count">4 produkter</div>
-<button class="c-btn" onclick="scrollC('cs1',1)">Fram &rarr;</button>
-</div>
-
-<div class="promo fu">
-<div class="ptag">&#128293; VECKANS TOPPVAL</div>
-<h2>Tapo Smart Plug P115 - Nr.1 Smart Uttag</h2>
-<p>Energimatning i realtid. Styr via mobilen var du an ar. Alexa och Google Home-kompatibel.</p>
-</div>
-
-<!-- Featured: Tapo Plug (cam-bilder = plug i verkligheten) -->
-<a href="https://amzn.to/4lRNDoo" class="fc fu" target="_blank">
-<div style="position:absolute;top:10px;right:10px;background:rgba(0,0,0,.75);border-radius:20px;padding:2px 8px;font-size:9px;color:#00e676;font-weight:700;z-index:2">12 kollar nu</div>
-<div class="fcs">
-<img src="img/cam1.jpg" onerror="this.src='https://placehold.co/600x220/1a1a2e/f5a623?text=Tapo+Smart+Plug'" alt="Tapo plug 1">
-<img src="img/Cam3.jpg" onerror="this.src='https://placehold.co/600x220/1a1a2e/f5a623?text=Tapo+Smart+Plug'" alt="Tapo plug 2">
-<img src="img/Cam4.jpg" onerror="this.src='https://placehold.co/600x220/1a1a2e/f5a623?text=Tapo+Smart+Plug'" alt="Tapo plug 3">
-</div>
-<div class="fb"><span class="badge bb">Redaktionens val</span><h3>TP-Link Tapo Smart Plug P115</h3><p class="desc">Mata energiforbrukning i realtid. Schemalaggnig, timer och app-styrning. Fungerar med Alexa och Google Home. Barnsakert uttag.</p><div class="fp-row"><div class="fp">~249 kr</div><div class="fp-n">Fri frakt &middot; Amazon.se</div></div><div class="fbtn">Se erbjudandet pa Amazon &rarr;</div></div>
-</a>
-
-<!-- HALSA MINI -->
-<div class="sec-head fu" style="margin-top:32px">
-<div class="sec-title">&#128138; Halsa<small>EFSA-godkant &middot; Bevisad effekt</small></div>
-<span class="see-all" onclick="showSec('halsa',document.querySelectorAll('.tab')[2])">Se alla &rarr;</span>
-</div>
-<div class="car-track" id="cs2">
-
-<a href="https://amzn.to/46SKyOD" class="p-card" target="_blank">
-<div class="iw"><img src="img/omega1.jpg" onerror="this.parentNode.innerHTML='<div class=ei>&#128138;</div>'" alt="Omega3"></div>
-<div class="pi"><span class="badge bb">1 Ars forbr.</span><div class="pn">Omega-3 2000mg 240 kapslar</div><div class="pst">&#9733;&#9733;&#9733;&#9733;&#9733; 3200+</div><div class="pp">~249 kr</div><div class="pb">Kop nu &rarr;</div></div>
-</a>
-
-<a href="https://amzn.to/4loDTlg" class="p-card" target="_blank">
-<div class="iw"><img src="img/vitb1.jpg" onerror="this.parentNode.innerHTML='<div class=ei>&#128138;</div>'" alt="VitB"></div>
-<div class="pi"><span class="badge bn">Nyhet</span><div class="pn">Vitamin B Complex 365 tabletter</div><div class="pst">&#9733;&#9733;&#9733;&#9733;&#9733; 1800+</div><div class="pp">~199 kr</div><div class="pb">Kop nu &rarr;</div></div>
-</a>
-
-<a href="https://amzn.eu/d/0duIr0S3" class="p-card" target="_blank">
-<div class="iw"><img src="img/vitd2.jpg" onerror="this.parentNode.innerHTML='<div class=ei>&#9728;</div>'" alt="VitD"></div>
-<div class="pi"><span class="badge bh">Popular</span><div class="pn">Vitamin D3 4000IU 400 tabletter</div><div class="pst">&#9733;&#9733;&#9733;&#9733;&#9733; 2100+</div><div class="pp">~179 kr</div><div class="pb">Kop nu &rarr;</div></div>
-</a>
-
-</div>
-<div class="car-nav">
-<button class="c-btn" onclick="scrollC('cs2',-1)">&larr; Bakat</button>
-<div class="c-count">3 produkter</div>
-<button class="c-btn" onclick="scrollC('cs2',1)">Fram &rarr;</button>
-</div>
-
-<!-- FITNESS MINI -->
-<div class="sec-head fu" style="margin-top:32px">
-<div class="sec-title">&#128170; Fitness<small>Varldens nr 1 i Sverige</small></div>
-<span class="see-all" onclick="showSec('fitness',document.querySelectorAll('.tab')[3])">Se alla &rarr;</span>
-</div>
-<div class="car-track" id="cs3">
-
-<a href="https://amzn.to/3NihKIH" class="p-card" target="_blank">
-<div class="iw"><img src="img/whey-choc1.jpg" onerror="this.parentNode.innerHTML='<div class=ei>&#128170;</div>'" alt="Whey Choc"></div>
-<div class="pi"><span class="badge bb">Varldens nr 1</span><div class="pn">ON Gold Standard Whey Choc 899g</div><div class="pst">&#9733;&#9733;&#9733;&#9733;&#9733; 12000+</div><div class="pp">~389 kr</div><div class="pb">Kop nu &rarr;</div></div>
-</a>
-
-<a href="https://amzn.to/4rozvE8" class="p-card" target="_blank">
-<div class="iw"><img src="img/whey-van1.jpg" onerror="this.parentNode.innerHTML='<div class=ei>&#128170;</div>'" alt="Whey Van"></div>
-<div class="pi"><div class="pn">ON Gold Standard Whey Vanilla 900g</div><div class="pst">&#9733;&#9733;&#9733;&#9733;&#9733; 8500+</div><div class="pp">~389 kr</div><div class="pb">Kop nu &rarr;</div></div>
-</a>
-
-<a href="https://amzn.to/4svPdhM" class="p-card" target="_blank">
-<div class="iw"><img src="img/oneblade1.jpg" onerror="this.parentNode.innerHTML='<div class=ei>&#128522;</div>'" alt="OneBlade"></div>
-<div class="pi"><span class="badge bs">Fynd</span><div class="pn">Philips OneBlade Pro 5-pack</div><div class="pst">&#9733;&#9733;&#9733;&#9733; 6300+</div><div class="pp">~279 kr</div><div class="pb">Kop nu &rarr;</div></div>
-</a>
-
-</div>
-<div class="car-nav">
-<button class="c-btn" onclick="scrollC('cs3',-1)">&larr; Bakat</button>
-<div class="c-count">3 produkter</div>
-<button class="c-btn" onclick="scrollC('cs3',1)">Fram &rarr;</button>
-</div>
-
-</div><!-- /sec-alla -->
-
-<!-- ===== SMARTA HEM ===== -->
-<div id="sec-smart" class="sb">
-<div class="sec-head"><div class="sec-title">&#127968; Smarta Hem<small>Gor livet enklare &middot; Under 500 kr</small></div></div>
-
-<!-- Tapo Smart Plug: cam-bilder = plug -->
-<a href="https://amzn.to/4lRNDoo" class="fc" target="_blank">
-<div class="fcs">
-<img src="img/cam1.jpg" onerror="this.src='https://placehold.co/600x220/1a1a2e/f5a623?text=Tapo+Smart+Plug'" alt="plug1">
-<img src="img/Cam3.jpg" onerror="this.src='https://placehold.co/600x220/1a1a2e/f5a623?text=Tapo+Smart+Plug'" alt="plug2">
-<img src="img/Cam4.jpg" onerror="this.src='https://placehold.co/600x220/1a1a2e/f5a623?text=Tapo+Smart+Plug'" alt="plug3">
-</div>
-<div class="fb"><span class="badge bb">Bast i test</span><h3>TP-Link Tapo Smart Plug P115</h3><p class="desc">Mata energiforbrukning i realtid. Schemalaggnig, timer och fjarrstyrning. Barnsakert uttag med brandsakert material. Kompatibel med Alexa och Google Home.</p><div class="fp-row"><div class="fp">~249 kr</div><div class="fp-n">Amazon.se</div></div><div class="fbtn">Se pa Amazon &rarr;</div></div>
-</a>
-
-<!-- Tapo Kamera: plug-bilder = kamera -->
-<a href="https://amzn.to/4lNqByT" class="fc" target="_blank">
-<div class="fcs">
-<img src="img/plug1.jpg" onerror="this.src='https://placehold.co/600x220/1a1a2e/4fc3f7?text=Tapo+C200'" alt="cam1">
-<img src="img/plug2.jpg" onerror="this.src='https://placehold.co/600x220/1a1a2e/4fc3f7?text=Tapo+C200'" alt="cam2">
-<img src="img/plug3.jpg" onerror="this.src='https://placehold.co/600x220/1a1a2e/4fc3f7?text=Tapo+C200'" alt="cam3">
-<img src="img/plug4.jpg" onerror="this.src='https://placehold.co/600x220/1a1a2e/4fc3f7?text=Tapo+C200'" alt="cam4">
-<img src="img/plug5.jpg" onerror="this.src='https://placehold.co/600x220/1a1a2e/4fc3f7?text=Tapo+C200'" alt="cam5">
-</div>
-<div class="fb"><span class="badge bh">Popular</span><h3>Tapo C200 Overvakningskamera</h3><p class="desc">1080p Full HD med nattseende upp till 10m. Rorelsedetektering och barngratstdetektering. 360 grad panorering. Fungerar med Alexa.</p><div class="fp-row"><div class="fp">~349 kr</div><div class="fp-n">Amazon.se</div></div><div class="fbtn">Se pa Amazon &rarr;</div></div>
-</a>
-
-<!-- Fire TV Stick -->
-<a href="https://amzn.to/4lyRVR9" class="fc" target="_blank">
-<div class="fcs">
-<img src="img/fire1.jpg" onerror="this.src='https://placehold.co/600x220/1a1a2e/00e676?text=Fire+TV+Stick'" alt="fire1">
-<img src="img/fire2.jpg" onerror="this.src='https://placehold.co/600x220/1a1a2e/00e676?text=Fire+TV+Stick'" alt="fire2">
-<img src="img/fire3.jpg" onerror="this.src='https://placehold.co/600x220/1a1a2e/00e676?text=Fire+TV+Stick'" alt="fire3">
-<img src="img/fire4.jpg" onerror="this.src='https://placehold.co/600x220/1a1a2e/00e676?text=Fire+TV+Stick'" alt="fire4">
-</div>
-<div class="fb"><span class="badge bn">Topsaljare</span><h3>Amazon Fire TV Stick HD</h3><p class="desc">Snabb HD-streaming med Alexa rost-fjarkontroll. Netflix, Prime Video, Disney+, YouTube, SVT och mer. Smart hem-dashboard inbyggt.</p><div class="fp-row"><div class="fp">~399 kr</div><div class="fp-n">Amazon.se</div></div><div class="fbtn">Se pa Amazon &rarr;</div></div>
-</a>
-
-<!-- Shelly -->
-<a href="https://amzn.to/40I5qoe" class="fc" target="_blank">
-<div class="fcs">
-<img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=220&fit=crop" onerror="this.src='https://placehold.co/600x220/1a1a2e/f5a623?text=Shelly+Plug+S'" alt="Shelly">
-</div>
-<div class="fb"><span class="badge bs">Smart val</span><h3>Shelly Plug S Smart EL-matare</h3><p class="desc">Mat exakt hur mycket el varje enhet drar. Automatisk av/pa. Fungerar med Google Home, Alexa och Apple HomeKit.</p><div class="fp-row"><div class="fp">219 kr</div><div class="fp-n">Amazon.se</div></div><div class="fbtn">Se pa Amazon &rarr;</div></div>
-</a>
-
-</div>
-
-<!-- ===== HALSA ===== -->
-<div id="sec-halsa" class="sb">
-<div class="sec-head"><div class="sec-title">&#128138; Halsa<small>Testat &middot; EFSA-godkant</small></div></div>
-
-<a href="https://amzn.to/46SKyOD" class="fc" target="_blank">
-<div class="fcs">
-<img src="img/omega1.jpg" onerror="this.src='https://placehold.co/600x220/1a1a2e/00e676?text=Omega-3'" alt="omega1">
-<img src="img/omega2.jpg" onerror="this.src='https://placehold.co/600x220/1a1a2e/00e676?text=Omega-3'" alt="omega2">
-<img src="img/omega4.jpg" onerror="this.src='https://placehold.co/600x220/1a1a2e/00e676?text=Omega-3'" alt="omega4">
-</div>
-<div class="fb"><span class="badge bb">1 Ars forbrukning</span><h3>Omega-3 Fish Oil 2000mg 240 kapslar</h3><p class="desc">660mg EPA plus 440mg DHA. Stodjer hjarta, hjarna och blodtryck. GMP-godkand, glutenfri och latt att svlja. EFSA-godkand.</p><div class="fp-row"><div class="fp">~249 kr</div></div><div class="fbtn">Se pa Amazon &rarr;</div></div>
-</a>
-
-<a href="https://amzn.to/4loDTlg" class="fc" target="_blank">
-<div class="fcs">
-<img src="img/vitb1.jpg" onerror="this.src='https://placehold.co/600x220/1a1a2e/4fc3f7?text=Vitamin+B'" alt="vitb1">
-<img src="img/vitb2.jpg" onerror="this.src='https://placehold.co/600x220/1a1a2e/4fc3f7?text=Vitamin+B'" alt="vitb2">
-</div>
-<div class="fb"><span class="badge bn">Nyhet</span><h3>Vitamin B Complex 365 tabletter</h3><p class="desc">Innehaller alla 8 B-vitaminer plus C-vitamin. Vegansk, Icke-GMO. Minskar trotthet och stodjer immunsystemet. 1 ars forbrukning.</p><div class="fp-row"><div class="fp">~199 kr</div></div><div class="fbtn">Se pa Amazon &rarr;</div></div>
-</a>
-
-<a href="https://amzn.eu/d/0duIr0S3" class="fc" target="_blank">
-<div class="fcs">
-<img src="img/vitd2.jpg" onerror="this.src='https://placehold.co/600x220/1a1a2e/ff4e50?text=Vitamin+D3'" alt="vitd1">
-<img src="img/vitd3.jpg" onerror="this.src='https://placehold.co/600x220/1a1a2e/ff4e50?text=Vitamin+D3'" alt="vitd2">
-</div>
-<div class="fb"><span class="badge bh">Popular</span><h3>Vitamin D3 4000IU 400 tabletter</h3><p class="desc">Hog styrka solnaring for immunforsvar, ben, tander och muskler. 4000 IE per tablett. 1 tablett varannan dag, racker i over 2 ar.</p><div class="fp-row"><div class="fp">~179 kr</div></div><div class="fbtn">Se pa Amazon &rarr;</div></div>
-</a>
-
-</div>
-
-<!-- ===== FITNESS ===== -->
-<div id="sec-fitness" class="sb">
-<div class="sec-head"><div class="sec-title">&#128170; Fitness<small>Varldsklass &middot; Bevisad effekt</small></div></div>
-
-<a href="https://amzn.to/3NihKIH" class="fc" target="_blank">
-<div class="fcs">
-<img src="img/whey-choc1.jpg" onerror="this.src='https://placehold.co/600x220/1a1a2e/f5a623?text=Whey+Chocolate'" alt="wheyc1">
-</div>
-<div class="fb"><span class="badge bb">Varldens nr 1 Whey</span><h3>ON Gold Standard 100% Whey Chocolate 899g</h3><p class="desc">24g protein per portion. 5.5g BCAA. Glutenfri och testad for forbjudna amnen. 29 portioner Double Rich Chocolate.</p><div class="fp-row"><div class="fp">~389 kr</div></div><div class="fbtn">Se pa Amazon &rarr;</div></div>
-</a>
-
-<a href="https://amzn.to/4rozvE8" class="fc" target="_blank">
-<div class="fcs">
-<img src="img/whey-van1.jpg" onerror="this.src='https://placehold.co/600x220/1a1a2e/f5a623?text=Whey+Vanilla'" alt="wheyv1">
-<img src="img/whey-van2.jpg" onerror="this.src='https://placehold.co/600x220/1a1a2e/f5a623?text=Whey+Vanilla'" alt="wheyv2">
-<img src="img/whey-van3.jpg" onerror="this.src='https://placehold.co/600x220/1a1a2e/f5a623?text=Whey+Vanilla'" alt="wheyv3">
-</div>
-<div class="fb"><span class="badge bs">Populart val</span><h3>ON Gold Standard Whey Vanilla Ice Cream 900g</h3><p class="desc">29 portioner vaniljsmak. 24g protein, 120 kalorier, 2g socker per portion. Perfekt for smoothies och bakning.</p><div class="fp-row"><div class="fp">~389 kr</div></div><div class="fbtn">Se pa Amazon &rarr;</div></div>
-</a>
-
-<a href="https://amzn.to/4svPdhM" class="fc" target="_blank">
-<div class="fcs">
-<img src="img/oneblade1.jpg" onerror="this.src='https://placehold.co/600x220/1a1a2e/f5a623?text=OneBlade'" alt="blade1">
-<img src="img/oneblade2.jpg" onerror="this.src='https://placehold.co/600x220/1a1a2e/f5a623?text=OneBlade'" alt="blade2">
-<img src="img/oneblade3.jpg" onerror="this.src='https://placehold.co/600x220/1a1a2e/f5a623?text=OneBlade'" alt="blade3">
-<img src="img/oneblade4.jpg" onerror="this.src='https://placehold.co/600x220/1a1a2e/f5a623?text=OneBlade'" alt="blade4">
-<img src="img/oneblade5.jpg" onerror="this.src='https://placehold.co/600x220/1a1a2e/f5a623?text=OneBlade'" alt="blade5">
-</div>
-<div class="fb"><span class="badge bs">Fynd</span><h3>Philips OneBlade Pro 5-pack Rakblad</h3><p class="desc">Rostfritt stalbblad som haller sig vasst i upp till 4 manader. Passar alla OneBlade-modeller. Unik 12000 klipp/minut-teknik.</p><div class="fp-row"><div class="fp">~279 kr</div></div><div class="fbtn">Se pa Amazon &rarr;</div></div>
-</a>
-
-</div>
-
-</div><!-- /wrap -->
 
 <footer>
-<p>2026 All-in1 ShopStar &middot; <a href="https://linktr.ee/allin1star" target="_blank">Linktree</a> &middot; <a href="https://www.youtube.com/@Allin1star-w5n" target="_blank">YouTube</a></p>
-<p style="margin-top:5px">Sidan innehaller affiliatelanklar. Som Amazon Associate tjanas provision pa kop utan extra kostnad for dig.</p>
+  <p>&copy; 2026 All-in1 ShopStar</p>
 </footer>
 
-<button class="chat-fab" onclick="toggleChat()">
-<span class="gdot"></span>
-<span>Hej! Jag hjalper dig med alla fragor</span>
-</button>
-
-<div class="chat-win" id="chatWin">
-<div class="ch">
-<div class="cav">&#9889;</div>
-<div class="chi"><strong>All-in1 Support</strong><small>Svar inom 30 min</small></div>
-<button class="cc" onclick="toggleChat()">X</button>
-</div>
-<div class="cms" id="chatMsgs">
-<div class="msg bot">Hejsan och valkommen till All-in1 ShopStar! Vi aterkopplar vanligtvis inom 30 minuter. Lamna garna din e-mail om du inte har tid att vanta sa aterkopplar vi med dig!</div>
-</div>
-<div class="cfm">
-<input type="text" class="ci" id="chatInp" placeholder="Skriv ditt meddelande...">
-<button class="cs" onclick="sendChat()">&#10148;</button>
-</div>
-</div>
-
 <script>
-function showSec(n,el){
-document.querySelectorAll('.sb').forEach(function(b){b.classList.remove('on')});
-document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active')});
-document.getElementById('sec-'+n).classList.add('on');
-if(el)el.classList.add('active');
-window.scrollTo(0,0);
+function openModal(id) {
+  const modal = document.getElementById('productModal');
+  const body = document.getElementById('modalBody');
+  if(id === 'tapo') {
+    body.innerHTML = `
+      <h2 style="font-family:Syne; margin-bottom:10px;">Tapo Smart Plug P115</h2>
+      <img src="img/cam1.jpg" style="width:100%; border-radius:10px; margin-bottom:15px;">
+      <p style="font-size:14px; line-height:1.6; color:var(--text);">
+        Denna smarta kontakt är vår absoluta favorit för att sänka elräkningen. 
+        Den mäter din förbrukning i realtid så du ser exakt vad kaffebryggaren eller TV:n drar.
+      </p>
+      <a href="https://amzn.to/4lRNDoo" target="_blank" style="display:block; background:var(--accent); color:#000; text-align:center; padding:12px; border-radius:10px; font-weight:800; margin-top:20px; text-decoration:none;">Köp på Amazon</a>
+    `;
+  }
+  modal.style.display = "block";
 }
-function scrollC(id,dir){
-var el=document.getElementById(id);
-var c=el.querySelector('.p-card');
-if(!c)return;
-el.scrollLeft+=dir*(c.offsetWidth+11);
+
+function closeModal() {
+  document.getElementById('productModal').style.display = "none";
 }
-function updateViewers(){
-var counts=[12,8,15,7];
-var ids=['v1','v2','v3','v4'];
-var total=0;
-for(var i=0;i<ids.length;i++){
-var el=document.getElementById(ids[i]);
-if(el){
-var n=counts[i]+Math.floor(Math.random()*5)-2;
-if(n<1)n=1;
-el.textContent=n+' kollar';
-total+=n;
-}
-}
-var tc=document.getElementById('viewCount');
-if(tc)tc.textContent=total+Math.floor(Math.random()*8);
-}
-setInterval(updateViewers,8000);
-function toggleChat(){
-document.getElementById('chatWin').classList.toggle('open');
-}
-document.getElementById('chatInp').addEventListener('keydown',function(e){
-if(e.key==='Enter')sendChat();
-});
-function sendChat(){
-var inp=document.getElementById('chatInp');
-var msg=inp.value.trim();
-if(!msg)return;
-inp.value='';
-var msgs=document.getElementById('chatMsgs');
-var u=document.createElement('div');
-u.className='msg user';
-u.textContent=msg;
-msgs.appendChild(u);
-msgs.scrollTop=9999;
-setTimeout(function(){
-var b=document.createElement('div');
-b.className='msg bot';
-b.textContent='Tack for ditt meddelande! Vi aterkopplar inom 30 min. Lamna din e-mail sa hor vi av oss!';
-msgs.appendChild(b);
-msgs.scrollTop=9999;
-},800);
+
+window.onclick = function(event) {
+  if (event.target == document.getElementById('productModal')) {
+    closeModal();
+  }
 }
 </script>
-<h1>All-in1 ShopStar – Smarta hem & elsparprylar under 500 kr</h1>
-<p>Här hittar du smarta hem gadgets under 300-500 kr som hjälper dig att sänka din elförbrukning och spara pengar, samt hälsa och fynd för hela hemmet!</p>
+
 </body>
 </html>
