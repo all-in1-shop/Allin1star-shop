@@ -148,6 +148,49 @@ window.onclick = function(event) {
   }
 }
 </script>
+  let cart = [];
+
+function addToCart(name, price, link) {
+  cart.push({ name, price, link });
+  updateCartUI();
+  alert(name + " har lagts i korgen!");
+}
+
+function updateCartUI() {
+  const itemsDiv = document.getElementById('cart-items');
+  const countSpan = document.getElementById('cart-count');
+  const totalDiv = document.getElementById('cart-total');
+  
+  itemsDiv.innerHTML = "";
+  let total = 0;
+  
+  cart.forEach((item, index) => {
+    total += parseInt(item.price.replace(/\D/g,''));
+    itemsDiv.innerHTML += `
+      <div style="display:flex; justify-content:space-between; margin-bottom:15px; border-bottom:1px solid var(--border); padding-bottom:10px;">
+        <div>
+          <div style="font-size:12px; font-weight:600;">${item.name}</div>
+          <div style="color:var(--accent2);">${item.price}</div>
+          <a href="${item.link}" target="_blank" style="color:var(--blue); font-size:10px;">Köp på Amazon ↗</a>
+        </div>
+        <button onclick="removeFromCart(${index})" style="background:none; border:none; color:red; cursor:pointer;">✕</button>
+      </div>
+    `;
+  });
+  
+  countSpan.innerText = cart.length;
+  totalDiv.innerText = "Totalt: ca " + total + " kr";
+}
+
+function removeFromCart(index) {
+  cart.splice(index, 1);
+  updateCartUI();
+}
+
+function toggleCart() {
+  const s = document.getElementById('cart-sidebar');
+  s.style.display = (s.style.display === 'block') ? 'none' : 'block';
+}
 
 </body>
 </html>
