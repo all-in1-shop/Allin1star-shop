@@ -3,273 +3,176 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>All-in1 ShopStar - Smarta Hem Fynd Sverige</title>
-<meta name="description" content="Smarta hem, hälsa och fitness under 500kr. Handplockade Amazon-fynd med toppbetyg.">
+<title>All-in1 ShopStar - Fynd</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-body{font-family:Arial,sans-serif;background:#f0f2f5;min-height:100vh;color:#333}
+body{font-family:Arial,sans-serif;background:#f0f2f5;color:#333;overflow-x:hidden}
 .ticker-wrap{background:#f5a623;overflow:hidden;padding:7px 0;white-space:nowrap}
 .ticker-inner{display:inline-block;animation:tick 40s linear infinite}
 @keyframes tick{from{transform:translateX(100vw)}to{transform:translateX(-100%)}}
-.ticker-inner span{font-size:12px;font-weight:bold;color:#000;margin-right:50px}
-.ticker-inner span::before{content:"★ "}
-.live-bar{background:#111;color:#ccc;font-size:11px;padding:6px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.live-dot{width:7px;height:7px;border-radius:50%;background:#ff4444;animation:blink 1s infinite;flex-shrink:0}
+.ticker-inner span{font-size:12px;font-weight:bold;margin-right:50px}
+.live-bar{background:#111;color:#ccc;font-size:11px;padding:6px 16px;display:flex;align-items:center;gap:12px}
+.live-dot{width:7px;height:7px;border-radius:50%;background:#ff4444;animation:blink 1s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
-.amz-badge{background:rgba(245,166,35,.2);border:1px solid #f5a623;color:#f5a623;font-size:10px;font-weight:bold;padding:2px 9px;border-radius:20px;margin-left:auto}
-header{background:#111;color:white;padding:12px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;position:sticky;top:0;z-index:200}
-.logo{font-size:20px;font-weight:bold;color:#f5a623;text-decoration:none;flex-shrink:0}
+header{background:#111;color:white;padding:12px 16px;position:sticky;top:0;z-index:200;text-align:center}
+.logo{font-size:20px;font-weight:bold;color:#f5a623;text-decoration:none}
 .logo span{color:white}
-.header-soc{margin-left:auto;display:flex;gap:8px}
-.header-soc a{background:#222;color:#ccc;padding:5px 10px;border-radius:6px;font-size:11px;font-weight:bold;text-decoration:none}
-.layout{display:flex;max-width:1200px;margin:0 auto}
-.sidebar{width:220px;flex-shrink:0;background:white;padding:20px 16px;border-right:1px solid #ddd;min-height:100vh}
-.sidebar h2{font-size:15px;color:#111;margin-bottom:14px;border-bottom:2px solid #f5a623;padding-bottom:8px}
-.sidebar a{display:flex;align-items:center;gap:8px;color:#333;margin:8px 0;text-decoration:none;font-size:13px;padding:7px 10px;border-radius:8px;transition:background .2s}
-.sidebar a:hover{background:#fff3e0;color:#e65c00;font-weight:bold}
-.main{flex:1;padding:10px;min-width:0}
-.hero-box{background:linear-gradient(135deg,#111 0%,#1a1428 100%);color:white;border-radius:14px;padding:20px;margin-bottom:20px;text-align:center}
-.hero-box h1{font-size:20px;margin-bottom:8px}
-.hero-box h1 em{color:#f5a623;font-style:normal}
-.sec-title{font-size:16px;font-weight:bold;margin:20px 0 10px;display:flex;align-items:center;gap:8px;border-left:4px solid #f5a623;padding-left:10px}
-
-/* GRID FIX: Alltid 2 i bredd på mobil */
-.grid{display:grid;grid-template-columns:repeat(2, 1fr);gap:10px;margin-bottom:20px}
-@media(min-width: 800px) { .grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); } }
-
-.card{background:white;border-radius:12px;overflow:hidden;transition:transform .2s;position:relative;display:flex;flex-direction:column;border:1px solid #eee}
-.card-img{width:100%;height:140px;object-fit:cover;background:#f5f5f5;display:block}
+.grid{display:grid;grid-template-columns:repeat(2, 1fr);gap:10px;padding:10px;max-width:1000px;margin:0 auto}
+.card{background:white;border-radius:12px;overflow:hidden;display:flex;flex-direction:column;border:1px solid #eee;position:relative}
+.card-img{width:100%;height:130px;object-fit:cover;background:#eee}
 .card-body{padding:10px;flex:1;display:flex;flex-direction:column}
-.card-badge{display:inline-block;font-size:8px;font-weight:900;text-transform:uppercase;padding:2px 6px;border-radius:4px;margin-bottom:6px;align-self:flex-start}
-.bg{background:#00c853;color:#000}
-.bb{background:#0288d1;color:#fff}
-.bo{background:#f5a623;color:#000}
-.card-title{font-size:12px;font-weight:bold;line-height:1.3;margin-bottom:6px;flex:1}
-.card-price{font-size:18px;font-weight:bold;color:#cc0000;margin-bottom:8px}
-.btn-amz{display:block;background:linear-gradient(90deg,#f5a623,#e8910a);color:#000;text-align:center;padding:10px;border-radius:8px;font-weight:bold;font-size:12px;text-decoration:none}
-.btn-info{display:block;background:#f0f0f0;color:#333;text-align:center;padding:6px;border-radius:8px;font-size:10px;border:none;cursor:pointer;width:100%;margin-top:6px}
-.card-info{display:none;font-size:10px;color:#555;background:#f9f9f9;padding:8px;margin-top:8px;border-radius:6px;line-height:1.4}
-.viewers-badge{position:absolute;top:6px;right:6px;background:rgba(0,0,0,.7);color:#00e676;font-size:8px;font-weight:bold;padding:2px 6px;border-radius:20px}
-@media(max-width:700px){.sidebar{display:none}}
+.card-title{font-size:11px;font-weight:bold;line-height:1.3;margin-bottom:8px;height:42px;overflow:hidden;color:#222}
+.card-price{font-size:16px;font-weight:bold;color:#cc0000;margin-bottom:8px}
+.btn-amz{display:block;background:linear-gradient(90deg,#f5a623,#e8910a);color:#000;text-align:center;padding:10px;border-radius:8px;font-weight:bold;font-size:11px;text-decoration:none;margin-top:auto}
+.btn-info{background:none;border:none;color:#777;font-size:10px;margin-top:8px;cursor:pointer;text-decoration:underline;text-align:center;width:100%}
+.card-info{display:none;font-size:10px;color:#555;padding:5px 0;line-height:1.4;text-align:left}
+.sec-title{font-size:15px;font-weight:bold;padding:15px 10px 5px;max-width:1000px;margin:0 auto;color:#111;border-bottom:2px solid #f5a623}
 </style>
 </head>
 <body>
 
-<div class="ticker-wrap">
-<div class="ticker-inner">
-<span>Tapo P115 - 249kr</span> <span>Govee LED 10m - 349kr</span> <span>Meross 2-pack - 299kr</span> <span>SONOFF Sensor - 149kr</span> <span>Fire TV Stick - 399kr</span>
-</div>
-</div>
+<div class="ticker-wrap"><div class="ticker-inner"><span>SUPERPRISER PÅ SMARTA HEM</span><span>FRI FRAKT ÖVER 299 KR</span><span>BEGRÄNSAT ANTAL</span></div></div>
+<div class="live-bar"><div class="live-dot"></div><span><strong id="viewCount">61</strong> kollar just nu</span></div>
 
-<div class="live-bar">
-<span class="live-dot"></span>
-<span><strong id="viewCount">47</strong> personer handlar just nu</span>
-<span class="amz-badge">★ Amazon Partner</span>
-</div>
+<header><a href="#" class="logo">All-in1 <span>ShopStar</span></a></header>
 
-<header>
-<a href="#" class="logo">All-in1 <span>ShopStar</span></a>
-</header>
-
-<div class="layout">
-<div class="sidebar">
-<h2>Kategorier</h2>
-<a href="#smarta">🏠 Smarta Hem</a>
-<a href="#belysning">💡 Belysning</a>
-<a href="#utomhus">🌿 Utomhus</a>
-<a href="#badrum">🚿 Badrum & Kök</a>
-</div>
-
-<div class="main">
-<div class="hero-box">
-<h1>Gör hemmet <em>smartare</em> - under 500 kr</h1>
-<p>Bästa fynden från Amazon.se, handplockade för kvalitet och betyg.</p>
-</div>
-
-<div class="sec-title" id="smarta">🏠 Smarta Hem</div>
+<div class="sec-title">🏠 Smarta Hem & Teknik</div>
 <div class="grid">
 
-<div class="card">
-<span class="viewers-badge" id="v1">14 kollar</span>
-<img class="card-img" src="img/Tapo-plug1.jpg.jpg" onerror="this.src='https://placehold.co/300x150?text=Tapo+P115'" alt="Tapo P115">
-<div class="card-body">
-<span class="card-badge bg">Bäst i test</span>
-<div class="card-title">Tapo Nano Smart Plug WiFi-uttag med energimätning</div>
-<div class="card-price">~249 kr</div>
-<a href="https://amzn.to/47uRuBM" class="btn-amz" target="_blank">🛒 Se på Amazon</a>
-<button class="btn-info" onclick="tog('i1',this)">▼ Mer info</button>
-<div class="card-info" id="i1">Fungerar med Alexa & Google Home. Röststyrning och fjärråtkomst. Ingen hub krävs.</div>
-</div>
+    <div class="card">
+        <img class="card-img" src="img/776.jpg" onerror="this.src='https://placehold.co/300x150?text=Tapo+P115'">
+        <div class="card-body">
+            <div class="card-title">Tapo Nano Smart Plug WiFi (P115) - Energimätning</div>
+            <div class="card-price">249 kr</div>
+            <a href="https://amzn.to/47uRuBM" class="btn-amz" target="_blank">KÖP PÅ AMAZON</a>
+            <button class="btn-info" onclick="tog('i1',this)">Info</button>
+            <div class="card-info" id="i1">Fungerar med Alexa & Google Home. Ingen hub krävs. Röststyrning, fjärråtkomst.</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <img class="card-img" src="img/777.jpg" onerror="this.src='https://placehold.co/300x150?text=Meross'">
+        <div class="card-body">
+            <div class="card-title">Meross Mini WiFi-uttag (2-pack) - 16A mätning</div>
+            <div class="card-price">299 kr</div>
+            <a href="https://amzn.to/4bTg5le" class="btn-amz" target="_blank">KÖP PÅ AMAZON</a>
+            <button class="btn-info" onclick="tog('i2',this)">Info</button>
+            <div class="card-info" id="i2">Set med 2 mini-wifi-uttag (typ E). Perfekt för solcellspaneler. Kompatibelt med Alexa, Google Home, SmartThings.</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <img class="card-img" src="img/778.jpg" onerror="this.src='https://placehold.co/300x150?text=SONOFF'">
+        <div class="card-body">
+            <div class="card-title">SONOFF SNZB-02D Mini Temp & Fuktighetssensor LCD</div>
+            <div class="card-price">149 kr</div>
+            <a href="https://amzn.to/483lx3F" class="btn-amz" target="_blank">KÖP PÅ AMAZON</a>
+            <button class="btn-info" onclick="tog('i3',this)">Info</button>
+            <div class="card-info" id="i3">Inomhushygrometer med LCD-skärm. Kompatibel med Alexa/Google Home via ZigBee.</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <img class="card-img" src="img/779.jpg" onerror="this.src='https://placehold.co/300x150?text=BroadLink'">
+        <div class="card-body">
+            <div class="card-title">BroadLink RM4 Mini Universell IR-fjärrkontroll</div>
+            <div class="card-price">299 kr</div>
+            <a href="https://amzn.to/4dOfgfU" class="btn-amz" target="_blank">KÖP PÅ AMAZON</a>
+            <button class="btn-info" onclick="tog('i4',this)">Info</button>
+            <div class="card-info" id="i4">Kodlärande. Styr TV, AC via mobilen. Fungerar med Alexa, IFTTT.</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <img class="card-img" src="img/780.jpg" onerror="this.src='https://placehold.co/300x150?text=Tapo+C200'">
+        <div class="card-body">
+            <div class="card-title">Tapo C200 Övervakningskamera Pan/Tilt</div>
+            <div class="card-price">349 kr</div>
+            <a href="https://amzn.to/4sAk653" class="btn-amz" target="_blank">KÖP PÅ AMAZON</a>
+            <button class="btn-info" onclick="tog('i5',this)">Info</button>
+            <div class="card-info" id="i5">Nattsyn, rörelsedetektering och tvåvägsljud. 1080p Full HD.</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <img class="card-img" src="img/781.jpg" onerror="this.src='https://placehold.co/300x150?text=Fire+TV'">
+        <div class="card-body">
+            <div class="card-title">Amazon Fire TV Stick HD med Alexa</div>
+            <div class="card-price">399 kr</div>
+            <a href="https://amzn.to/4bPEqrR" class="btn-amz" target="_blank">KÖP PÅ AMAZON</a>
+            <button class="btn-info" onclick="tog('i6',this)">Info</button>
+            <div class="card-info" id="i6">Streama Netflix, Prime Video, Disney+. Gör TVn smart.</div>
+        </div>
+    </div>
+
 </div>
 
-<div class="card">
-<span class="viewers-badge" id="v2">8 kollar</span>
-<img class="card-img" src="img/Smart-plug1.jpg.jpg" onerror="this.src='https://placehold.co/300x150?text=Meross+2-pack'" alt="Meross">
-<div class="card-body">
-<span class="card-badge bb">2-pack</span>
-<div class="card-title">Meross Set med 2 mini-wifi-uttag 16A</div>
-<div class="card-price">~299 kr</div>
-<a href="https://amzn.to/4bTg5le" class="btn-amz" target="_blank">🛒 Se på Amazon</a>
-<button class="btn-info" onclick="tog('i2',this)">▼ Mer info</button>
-<div class="card-info" id="i2">Kompatibelt med Alexa, Google Home och SmartThings. Perfekt för solcellspanel.</div>
-</div>
-</div>
-
-<div class="card">
-<span class="viewers-badge" id="v3">5 kollar</span>
-<img class="card-img" src="img/Temp-humidity1.jpg.jpg" onerror="this.src='https://placehold.co/300x150?text=SONOFF'" alt="SONOFF">
-<div class="card-body">
-<span class="card-badge bo">Zigbee</span>
-<div class="card-title">SONOFF SNZB-02D Mini Temp & Fuktighetssensor LCD</div>
-<div class="card-price">~149 kr</div>
-<a href="https://amzn.to/483lx3F" class="btn-amz" target="_blank">🛒 Se på Amazon</a>
-<button class="btn-info" onclick="tog('i3',this)">▼ Mer info</button>
-<div class="card-info" id="i3">Inomhushygrometer med tydlig LCD-skärm. Kompatibel med Alexa/Google Home.</div>
-</div>
-</div>
-
-<div class="card">
-<span class="viewers-badge" id="v4">7 kollar</span>
-<img class="card-img" src="img/broadlink-1.jpg.jpg" onerror="this.src='https://placehold.co/300x150?text=BroadLink'" alt="BroadLink">
-<div class="card-body">
-<div class="card-title">BroadLink RM4 Mini Universell IR-fjärrkontroll</div>
-<div class="card-price">~299 kr</div>
-<a href="https://amzn.to/4dOfgfU" class="btn-amz" target="_blank">🛒 Se på Amazon</a>
-<button class="btn-info" onclick="tog('i4',this)">▼ Mer info</button>
-<div class="card-info" id="i4">Kodlärande. Styr TV och AC via mobilen. Fungerar med Alexa och IFTTT.</div>
-</div>
-</div>
-
-<div class="card">
-<span class="viewers-badge" id="v5">11 kollar</span>
-<img class="card-img" src="img/plug1.jpg.jpg" onerror="this.src='https://placehold.co/300x150?text=Tapo+C200'" alt="Tapo C200">
-<div class="card-body">
-<span class="card-badge bb">Populär</span>
-<div class="card-title">Tapo C200 Övervakningskamera - 1080p Pan/Tilt</div>
-<div class="card-price">~349 kr</div>
-<a href="https://amzn.to/4sAk653" class="btn-amz" target="_blank">🛒 Se på Amazon</a>
-<button class="btn-info" onclick="tog('i5',this)">▼ Mer info</button>
-<div class="card-info" id="i5">Nattsyn, rörelsedetektering och tvåvägsljud för trygghet i hemmet.</div>
-</div>
-</div>
-
-<div class="card">
-<span class="viewers-badge" id="v6">22 kollar</span>
-<img class="card-img" src="img/fire1.jpg.jpg" onerror="this.src='https://placehold.co/300x150?text=Fire+TV+Stick'" alt="Fire Stick">
-<div class="card-body">
-<span class="card-badge br">Toppsäljare</span>
-<div class="card-title">Amazon Fire TV Stick HD med Alexa Remote</div>
-<div class="card-price">~399 kr</div>
-<a href="https://amzn.to/4bPEqrR" class="btn-amz" target="_blank">🛒 Se på Amazon</a>
-<button class="btn-info" onclick="tog('i6',this)">▼ Mer info</button>
-<div class="card-info" id="i6">Streama Netflix, YouTube, Prime Video och mycket mer i HD.</div>
-</div>
-</div>
-
-</div><div class="sec-title" id="belysning">💡 Belysning</div>
+<div class="sec-title">💡 Belysning & Trädgård</div>
 <div class="grid">
 
-<div class="card">
-<span class="viewers-badge" id="v8">18 kollar</span>
-<img class="card-img" src="img/Led-app1.jpg.jpg" onerror="this.src='https://placehold.co/300x150?text=Govee+LED'" alt="Govee LED">
-<div class="card-body">
-<span class="card-badge bg">10 meter</span>
-<div class="card-title">Govee WiFi LED Strip 10m - Musik Synk & App</div>
-<div class="card-price">~349 kr</div>
-<a href="https://amzn.to/3PDCWJU" class="btn-amz" target="_blank">🛒 Se på Amazon</a>
-<button class="btn-info" onclick="tog('i8',this)">▼ Mer info</button>
-<div class="card-info" id="i8">Smart RGB LED-remsa. Fungerar med Alexa & Google Assistant. 2 rullar á 5m.</div>
-</div>
+    <div class="card">
+        <img class="card-img" src="img/782.jpg" onerror="this.src='https://placehold.co/300x150?text=Govee+LED'">
+        <div class="card-body">
+            <div class="card-title">Govee WiFi LED Strip 10m - Musik Synk</div>
+            <div class="card-price">349 kr</div>
+            <a href="https://amzn.to/3PDCWJU" class="btn-amz" target="_blank">KÖP PÅ AMAZON</a>
+            <button class="btn-info" onclick="tog('i7',this)">Info</button>
+            <div class="card-info" id="i7">Smart RGB LED-remsa. Musiksynkronisering, färgbyte. Fungerar med Alexa/Google Assistant.</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <img class="card-img" src="img/776.jpg" onerror="this.src='https://placehold.co/300x150?text=Govee+E27'">
+        <div class="card-body">
+            <div class="card-title">Govee Alexa Smart Lampa E27 (2-pack)</div>
+            <div class="card-price">229 kr</div>
+            <a href="https://amzn.to/4bWKNd3" class="btn-amz" target="_blank">KÖP PÅ AMAZON</a>
+            <button class="btn-info" onclick="tog('i8',this)">Info</button>
+            <div class="card-info" id="i8">Färgbyte med Music Sync. 54 scener, 16M DIY-färger. WiFi & Bluetooth.</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <img class="card-img" src="img/777.jpg" onerror="this.src='https://placehold.co/300x150?text=Solceller'">
+        <div class="card-body">
+            <div class="card-title">12-pack Solcellslampor Vägg IP67 Vattentäta</div>
+            <div class="card-price">179 kr</div>
+            <a href="https://amzn.to/4s3wCca" class="btn-amz" target="_blank">KÖP PÅ AMAZON</a>
+            <button class="btn-info" onclick="tog('i9',this)">Info</button>
+            <div class="card-info" id="i9">Utomhus Sol Vägglampa, varmvita. För trädgård, veranda, trappa.</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <img class="card-img" src="img/778.jpg" onerror="this.src='https://placehold.co/300x150?text=Bevattning'">
+        <div class="card-body">
+            <div class="card-title">PChero Solcellsbevattning med timer</div>
+            <div class="card-price">349 kr</div>
+            <a href="https://amzn.to/4thJsVq" class="btn-amz" target="_blank">KÖP PÅ AMAZON</a>
+            <button class="btn-info" onclick="tog('i10',this)">Info</button>
+            <div class="card-info" id="i10">Automatiskt system med 15m slang. För växthus, balkong och grönsaker.</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <img class="card-img" src="img/779.jpg" onerror="this.src='https://placehold.co/300x150?text=Tvål'">
+        <div class="card-body">
+            <div class="card-title">Automatisk Tvåldispenser 380ml Uppladdningsbar</div>
+            <div class="card-price">199 kr</div>
+            <a href="https://amzn.to/4vc5udY" class="btn-amz" target="_blank">KÖP PÅ AMAZON</a>
+            <button class="btn-info" onclick="tog('i11',this)">Info</button>
+            <div class="card-info" id="i11">Beröringsfri skumtvålspump. 4 nivåer, IR-sensor, väggmonterad.</div>
+        </div>
+    </div>
+
 </div>
 
-<div class="card">
-<span class="viewers-badge" id="v9">12 kollar</span>
-<img class="card-img" src="img/govee-lampa1.jpg.jpg" onerror="this.src='https://placehold.co/300x150?text=Govee+Bulb'" alt="Govee Bulb">
-<div class="card-body">
-<span class="card-badge bo">2-pack</span>
-<div class="card-title">Govee Smart Bulb E27 - 16M Färger, 2-pack</div>
-<div class="card-price">~229 kr</div>
-<a href="https://amzn.to/4bWKNd3" class="btn-amz" target="_blank">🛒 Se på Amazon</a>
-<button class="btn-info" onclick="tog('i9',this)">▼ Mer info</button>
-<div class="card-info" id="i9">Färgbyte med Music Sync. Fungerar med Home App & Google Assistant.</div>
-</div>
-</div>
-
-</div><div class="sec-title" id="utomhus">🌿 Utomhus & Trädgård</div>
-<div class="grid">
-
-<div class="card">
-<span class="viewers-badge" id="v10">9 kollar</span>
-<img class="card-img" src="img/sol-lampa1.jpg.jpg" onerror="this.src='https://placehold.co/300x150?text=Solceller'" alt="Solcellslampa">
-<div class="card-body">
-<span class="card-badge bo">12-pack</span>
-<div class="card-title">Utomhus Sol Vägglampa - 12st IP67 Vattentäta</div>
-<div class="card-price">~179 kr</div>
-<a href="https://amzn.to/4s3wCca" class="btn-amz" target="_blank">🛒 Se på Amazon</a>
-<button class="btn-info" onclick="tog('i10',this)">▼ Mer info</button>
-<div class="card-info" id="i10">Varmvita lampor för trädgård, trappa och veranda. Ingen el krävs.</div>
-</div>
-</div>
-
-<div class="card">
-<span class="viewers-badge" id="v11">6 kollar</span>
-<img class="card-img" src="img/bevattning-1.jpg.jpg" onerror="this.src='https://placehold.co/300x150?text=Bevattning'" alt="Bevattning">
-<div class="card-body">
-<div class="card-title">PChero Solcellsbevattningssystem med timer</div>
-<div class="card-price">~349 kr</div>
-<a href="https://amzn.to/4thJsVq" class="btn-amz" target="_blank">🛒 Se på Amazon</a>
-<button class="btn-info" onclick="tog('i11',this)">▼ Mer info</button>
-<div class="card-info" id="i11">Automatiskt system med 15m slang. Perfekt för växthus och balkong.</div>
-</div>
-</div>
-
-<div class="card">
-<span class="viewers-badge" id="v12">15 kollar</span>
-<img class="card-img" src="img/luftkylare-1.jpg.jpg" onerror="this.src='https://placehold.co/300x150?text=Luftkylare'" alt="Luftkylare">
-<div class="card-body">
-<span class="card-badge bb">Laddbar</span>
-<div class="card-title">Bärbar Luftkylare Mini AC - USB Laddning</div>
-<div class="card-price">~249 kr</div>
-<a href="https://amzn.to/4sCZ3ia" class="btn-amz" target="_blank">🛒 Se på Amazon</a>
-<button class="btn-info" onclick="tog('i12',this)">▼ Mer info</button>
-<div class="card-info" id="i12">Drivs av litiumbatteri. Personlig kylfläkt för kontor eller utomhus.</div>
-</div>
-</div>
-
-<div class="card">
-<span class="viewers-badge" id="v13">10 kollar</span>
-<img class="card-img" src="img/tval-1.jpg.jpg" onerror="this.src='https://placehold.co/300x150?text=Tvålpump'" alt="Tvåldispenser">
-<div class="card-body">
-<span class="card-badge bg">Beröringsfri</span>
-<div class="card-title">Automatisk Tvåldispenser 380ml Uppladdningsbar</div>
-<div class="card-price">~199 kr</div>
-<a href="https://amzn.to/4vc5udY" class="btn-amz" target="_blank">🛒 Se på Amazon</a>
-<button class="btn-info" onclick="tog('i13',this)">▼ Mer info</button>
-<div class="card-info" id="i13">IR-sensor och 4 nivåer. Vattentät för kök och badrum.</div>
-</div>
-</div>
-
-</div></div></div><script>
+<script>
 function tog(id,btn){
     var el=document.getElementById(id);
-    if(el.style.display==='block'){el.style.display='none';btn.textContent='▼ Mer info';}
-    else{el.style.display='block';btn.textContent='▲ Dölj info';}
+    if(el.style.display==='block'){el.style.display='none';btn.textContent='Info';}
+    else{el.style.display='block';btn.textContent='Dölj';}
 }
-
-function updateViewers(){
-    var viewerElements = document.querySelectorAll('[id^="v"]');
-    var total = 0;
-    viewerElements.forEach(function(el){
-        var n = Math.floor(Math.random() * 15) + 5; 
-        el.textContent = n + ' kollar';
-        total += n;
-    });
-    var tc=document.getElementById('viewCount');
-    if(tc)tc.textContent = total + Math.floor(Math.random()*10);
-}
-setInterval(updateViewers, 8000);
-updateViewers();
 </script>
-
 </body>
 </html>
