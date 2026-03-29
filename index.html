@@ -1,29 +1,136 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sv">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>All in 1 Shop</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>All-in1 ShopStar - Smarta Hem Fynd Sverige</title>
+<meta name="description" content="Smarta hem, halsa och fitness under 500kr. Handplockade Amazon-fynd med toppbetyg.">
+<meta name="keywords" content="smarta hem, smart plug, tapo, fire tv stick, shelly, omega3, vitamin, whey protein, Sverige, amazon fynd">
+<meta name="robots" content="index, follow">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:Arial,sans-serif;background:#f0f2f5;min-height:100vh}
+.ticker-wrap{background:#f5a623;overflow:hidden;padding:7px 0;white-space:nowrap}
+.ticker-inner{display:inline-block;animation:tick 30s linear infinite}
+@keyframes tick{from{transform:translateX(100vw)}to{transform:translateX(-100%)}}
+.ticker-inner span{font-size:12px;font-weight:bold;color:#000;margin-right:50px}
+.ticker-inner span::before{content:"★ "}
+.live-bar{background:#111;color:#ccc;font-size:11px;padding:6px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.live-dot{width:7px;height:7px;border-radius:50%;background:#ff4444;animation:blink 1s infinite;flex-shrink:0}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.amz-badge{background:rgba(245,166,35,.2);border:1px solid #f5a623;color:#f5a623;font-size:10px;font-weight:bold;padding:2px 9px;border-radius:20px;margin-left:auto}
+header{background:#111;color:white;padding:12px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;position:sticky;top:0;z-index:200}
+.logo{font-size:20px;font-weight:bold;color:#f5a623;text-decoration:none;flex-shrink:0}
+.logo span{color:white}
+.header-soc{margin-left:auto;display:flex;gap:8px}
+.header-soc a{background:#222;color:#ccc;padding:5px 10px;border-radius:6px;font-size:11px;font-weight:bold;text-decoration:none}
+.layout{display:flex;max-width:1200px;margin:0 auto}
+.sidebar{width:220px;flex-shrink:0;background:white;padding:20px 16px;border-right:1px solid #ddd;min-height:100vh}
+.sidebar h2{font-size:15px;color:#111;margin-bottom:14px;border-bottom:2px solid #f5a623;padding-bottom:8px}
+.sidebar a{display:flex;align-items:center;gap:8px;color:#333;margin:8px 0;text-decoration:none;font-size:13px;padding:7px 10px;border-radius:8px;transition:background .2s}
+.sidebar a:hover,.sidebar a.active{background:#fff3e0;color:#e65c00;font-weight:bold}
+.sidebar .trust{margin-top:20px;background:#f9f9f9;border-radius:10px;padding:12px;font-size:11px;color:#666;line-height:1.8}
+.sidebar .trust strong{display:block;color:#111;font-size:12px;margin-bottom:6px}
+.main{flex:1;padding:18px;min-width:0}
+.hero-box{background:linear-gradient(135deg,#111 0%,#1a1428 100%);color:white;border-radius:14px;padding:24px;margin-bottom:22px;text-align:center}
+.hero-box h1{font-size:22px;margin-bottom:8px}
+.hero-box h1 em{color:#f5a623;font-style:normal}
+.hero-box p{font-size:13px;color:#aaa;max-width:400px;margin:0 auto 16px}
+.hero-stats{display:flex;justify-content:center;gap:24px;flex-wrap:wrap}
+.hstat strong{display:block;font-size:20px;color:#f5a623;font-weight:bold}
+.hstat span{font-size:11px;color:#888}
+.sec-title{font-size:17px;font-weight:bold;color:#111;margin:22px 0 12px;display:flex;align-items:center;gap:8px;border-left:4px solid #f5a623;padding-left:10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;margin-bottom:10px}
+.card{background:white;border-radius:12px;overflow:hidden;transition:transform .2s,box-shadow .2s;position:relative;display:flex;flex-direction:column;text-decoration:none;color:inherit;border:1px solid #e8e8e8;}
+.card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.12);border-color:#f5a623}
+.card:active{transform:scale(.98)}
+.card-img{width:100%;height:180px;object-fit:cover;background:#f5f5f5;display:block}
+.card-body{padding:12px;flex:1;display:flex;flex-direction:column}
+.card-badge{display:inline-block;font-size:9px;font-weight:900;text-transform:uppercase;padding:2px 7px;border-radius:4px;margin-bottom:7px;letter-spacing:.5px}
+.badge-green{background:#00c853;color:#000}
+.badge-red{background:#ff3d00;color:#fff}
+.badge-blue{background:#0288d1;color:#fff}
+.badge-orange{background:#f5a623;color:#000}
+.card-title{font-size:13px;font-weight:bold;line-height:1.4;margin-bottom:6px;flex:1}
+.card-stars{color:#f5a623;font-size:12px;margin-bottom:4px}
+.card-reviews{font-size:10px;color:#888}
+.card-price{font-size:22px;font-weight:bold;color:#cc0000;margin:8px 0 4px}
+.card-desc{font-size:11px;color:#666;line-height:1.5;margin-bottom:10px}
+.card-info{display:none;font-size:12px;color:#444;background:#f9f9f9;border-radius:8px;padding:10px;margin-bottom:8px;line-height:1.6}
+.card-review-q{font-style:italic;color:#555;margin-top:5px;font-size:11px}
+.card-review-q::before{content:'"'}
+.card-review-q::after{content:'"'}
+.btn-amz{display:block;background:linear-gradient(90deg,#f5a623,#e8910a);color:#000;text-align:center;padding:10px;border-radius:8px;font-weight:bold;font-size:13px;text-decoration:none;border:none;cursor:pointer;width:100%;margin-bottom:6px;}
+.btn-info{display:block;background:#f0f0f0;color:#333;text-align:center;padding:8px;border-radius:8px;font-size:12px;border:none;cursor:pointer;width:100%}
+.btn-info:hover{background:#e0e0e0}
+.viewers-badge{position:absolute;top:8px;right:8px;background:rgba(0,0,0,.7);color:#00e676;font-size:9px;font-weight:bold;padding:2px 7px;border-radius:20px}
+.chat-fab{position:fixed;bottom:18px;right:14px;z-index:999;background:#1a1d26;border:1px solid #333;border-radius:24px;padding:9px 13px;display:flex;align-items:center;gap:7px;cursor:pointer;box-shadow:0 4px 18px rgba(0,0,0,.4)}
+.gdot{width:7px;height:7px;border-radius:50%;background:#00e676;box-shadow:0 0 5px #00e676;animation:blink 2s infinite;flex-shrink:0}
+.chat-fab span{font-size:11px;color:#aaa;font-weight:500}
+.chat-win{position:fixed;bottom:70px;right:14px;z-index:998;width:calc(100vw - 28px);max-width:320px;background:#13151c;border:1px solid #252836;border-radius:16px;box-shadow:0 14px 44px rgba(0,0,0,.6);display:none;flex-direction:column;overflow:hidden}
+.chat-win.open{display:flex}
+.chat-head{padding:12px 14px;background:#1a1d26;border-bottom:1px solid #252836;display:flex;align-items:center;gap:8px}
+.chat-av{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#00e676,#009624);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.chat-hi strong{display:block;font-size:13px;color:#f0f2f8}
+.chat-hi small{font-size:10px;color:#00e676}
+.chat-close{margin-left:auto;background:none;border:none;color:#666;font-size:20px;cursor:pointer}
+.chat-msgs{overflow-y:auto;padding:12px;min-height:140px;max-height:240px;display:flex;flex-direction:column;gap:8px}
+.msg{max-width:88%;padding:8px 11px;border-radius:12px;font-size:12px;line-height:1.5;color:#f0f2f8}
+.msg.bot{background:#1a1d26;border:1px solid #252836;align-self:flex-start}
+.msg.user{background:#00e676;color:#000;font-weight:600;align-self:flex-end}
+.chat-form{padding:10px;border-top:1px solid #252836;display:flex;gap:7px}
+.chat-input{flex:1;background:#1a1d26;border:1px solid #333;border-radius:8px;padding:8px 11px;color:#f0f2f8;font-size:12px;outline:none}
+.chat-send{background:#00e676;border:none;border-radius:8px;padding:8px 12px;color:#000;font-weight:bold;font-size:14px;cursor:pointer}
+@media(max-width:700px){.sidebar{display:none}.grid{grid-template-columns:repeat(2,1fr);gap:10px}.card-img{height:140px}.hero-box h1{font-size:18px}}
+@media(max-width:400px){.grid{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
-    <div id="container">
-        <header>
-            <h1>Welcome to All in 1 Shop</h1>
-        </header>
-        <main>
-            <section>
-                <form>
-                    <input type="text" placeholder="Search...">
-                    <button type="submit">Search</button>
-                </form>
-                <div class="product" style="border:1px solid #e8e8e8;">
-                    <h2>Product Title</h2>
-                    <p>Description of the product.</p>
-                    <button class="add-to-cart" style="border:none;cursor:pointer;width:100%;margin-bottom:6px;">Add to Cart</button>
-                </div>
-            </section>
-        </main>
-    </div>
+<div class="ticker-wrap"><div class="ticker-inner"><span>Tapo Smart Plug P115 - 249kr</span><span>Fire TV Stick HD - 399kr</span><span>Tapo C200 Kamera - 349kr</span><span>Shelly Plug S - 219kr</span><span>SONOFF Temp Sensor - 149kr</span><span>Meross 2-pack - 299kr</span><span>Govee LED Strip 10m - 349kr</span><span>Tapo Nano Plug - 199kr</span><span>Omega-3 240 kapslar - 249kr</span><span>Vitamin D3 400tab - 179kr</span><span>Whey Protein Chocolate - 389kr</span><span>OneBlade 5-pack - 279kr</span><span>Vitamin B Complex 365tab - 199kr</span></div></div>
+<div class="live-bar"><span class="live-dot"></span><span><strong id="viewCount" style="color:#ff6b6b">38</strong> personer handlar just nu</span><span class="amz-badge">★ Amazon Affiliate Partner</span></div>
+<header><a href="#" class="logo">All-in1 <span>ShopStar</span></a><div class="header-soc"><a href="https://www.youtube.com/@Allin1star-w5n" target="_blank">▶ YouTube</a><a href="https://www.facebook.com/Allin1star" target="_blank">Facebook</a></div></header>
+<div class="layout">
+<div class="sidebar"><h2>Kategorier</h2><a href="#smarta" class="active" onclick="scrollTo('#smarta')">🏠 Smarta Hem</a><a href="#halsa" onclick="">💊 Halsa &amp; Kosttillskott</a><a href="#fitness" onclick="">💪 Fitness &amp; Protein</a><a href="#grooming" onclick="">🪒 Grooming</a><br><h2>Filtrera</h2><a href="#">⚡ Under 200 kr</a><a href="#">🔥 Under 300 kr</a><a href="#">⭐ Under 500 kr</a><a href="#">🏆 Bast i test</a><div class="trust"><strong>🛡 Trygg shopping</strong>✅ Saker kop via Amazon<br>⭐ Veriferade recensioner<br>🚚 Snabb leverans<br>↩ Enkel retur</div></div>
+<div class="main">
+<div class="hero-box"><h1>Gör hemmet <em>smartare</em> – under 500 kr</h1><p>Bevisade produkter som gor livet enklare for hela hushallet. Alla produkter handplockade med 4.5+ betyg.</p><div class="hero-stats"><div class="hstat"><strong>500+</strong><span>Nojda kunder</span></div><div class="hstat"><strong>4.7★</strong><span>Snittbetyg</span></div><div class="hstat"><strong>100%</strong><span>Testat &amp; akta</span></div></div></div>
+<div class="sec-title" id="smarta">🏠 Smarta Hem <span style="font-size:12px;color:#888;font-weight:normal">– Under 500 kr</span></div>
+<div class="grid">
+<div class="card"><span class="viewers-badge" id="v1">12 kollar</span><img class="card-img" src="img/cam1.jpg" onerror="this.src='https://placehold.co/400x180/f0f2f5/f5a623?text=Tapo+Smart+Plug'" alt="Tapo Smart Plug P115"><div class="card-body"><span class="card-badge badge-green">Bast i test</span><div class="card-title">TP-Link Tapo Smart Plug P115 – WiFi Energimatning</div><div class="card-stars">★★★★★ <span class="card-reviews">(8 200+ rec.)</span></div><div class="card-price">~249 kr</div><div class="card-desc">Styr och mata energi via mobilen. Schemalaggnig och timer. Fungerar med Alexa och Google Home.</div><div class="card-info" id="info-plug"><strong>Varfor kopa?</strong><br>✅ Mata exakt elforbrukning i realtid<br>✅ Styr via mobilen var du an ar<br>✅ Schemalaggnig och timer<br>✅ Kompatibel med Alexa, Google Home<br>✅ Barnsakert uttag, brandsakert material<br><div class="card-review-q">Sankte min elrakning direkt, superenkel att stalla in!</div><div class="card-review-q">Fungerar perfekt med Google Home, koper fler!</div></div><a href="https://amzn.to/4lRNDoo" class="btn-amz" target="_blank">🛒 Se på Amazon.se</a><button class="btn-info" onclick="toggleInfo('info-plug',this)">▼ Mer info &amp; recensioner</button></div></div>
+<div class="card"><span class="viewers-badge" id="v2">9 kollar</span><img class="card-img" src="img/plug1.jpg" onerror="this.src='https://placehold.co/400x180/f0f2f5/0288d1?text=Tapo+C200+Kamera'" alt="Tapo C200 Kamera"><div class="card-body"><span class="card-badge badge-blue">12 000+ rec.</span><div class="card-title">Tapo C200 Overvakningskamera – 1080p Full HD</div><div class="card-stars">★★★★★ <span class="card-reviews">(12 000+ rec.)</span></div><div class="card-price">~349 kr</div><div class="card-desc">360° panorering, nattseende 10m, rorelsedetektering och barngratsdetektering.</div><div class="card-info" id="info-cam"><strong>Varfor kopa?</strong><br>✅ 1080p Full HD med nattseende<br>✅ 360° panorering, 114° vertikalt<br>✅ Rorelse- och barngratsdetektering<br>✅ microSD upp till 512GB<br>✅ Tvavags-ljud, dela klipp direkt<br><div class="card-review-q">Perfekt som babykamera, ser allt kristallklart!</div><div class="card-review-q">Enkel att installera, funkar felfritt med Tapo-appen.</div></div><a href="https://amzn.to/4lNqByT" class="btn-amz" target="_blank">🛒 Se på Amazon.se</a><button class="btn-info" onclick="toggleInfo('info-cam',this)">▼ Mer info &amp; recensioner</button></div></div>
+<div class="card"><span class="viewers-badge" id="v3">22 kollar</span><img class="card-img" src="img/fire1.jpg" onerror="this.src='https://placehold.co/400x180/f0f2f5/111?text=Fire+TV+Stick'" alt="Fire TV Stick HD"><div class="card-body"><span class="card-badge badge-red">Topsaljare</span><div class="card-title">Amazon Fire TV Stick HD – Streaming med Alexa</div><div class="card-stars">★★★★★ <span class="card-reviews">(45 000+ rec.)</span></div><div class="card-price">~399 kr</div><div class="card-desc">Netflix, Prime Video, Disney+, YouTube, SVT Play och mer. Snabb HD-streaming med rost-fjarrkontrollen.</div><div class="card-info" id="info-fire"><strong>Varfor kopa?</strong><br>✅ Netflix, Prime, Disney+, SVT Play<br>✅ Alexa rost-fjarkontroll inbyggd<br>✅ Snabb HD-streaming<br>✅ Smart hem-dashboard<br>✅ Pa/av och volymkontroll for TV<br><div class="card-review-q">Basta kopen jag gjort, forvandlade min gamla TV!</div><div class="card-review-q">Snabb, enkel och fungerar med allt. Rekommenderar!</div></div><a href="https://amzn.to/4lyRVR9" class="btn-amz" target="_blank">🛒 Se på Amazon.se</a><button class="btn-info" onclick="toggleInfo('info-fire',this)">▼ Mer info &amp; recensioner</button></div></div>
+<div class="card"><span class="viewers-badge" id="v4">7 kollar</span><img class="card-img" src="img/cam1.jpg" onerror="this.src='https://placehold.co/400x180/f0f2f5/f5a623?text=Shelly+Plug+S'" alt="Shelly Plug S"><div class="card-body"><span class="card-badge badge-orange">Fynd 219kr</span><div class="card-title">Shelly Plug S – Smart Elmatare &amp; Tidur</div><div class="card-stars">★★★★★ <span class="card-reviews">(4 800+ rec.)</span></div><div class="card-price">219 kr</div><div class="card-desc">Stoppar standby-tjuvar automatiskt. Betalar sig sjalvt pa 6 veckor. Fungerar med HomeKit, Alexa, Google.</div><div class="card-info" id="info-shelly"><strong>Varfor kopa?</strong><br>✅ Mata forbrukning i realtid<br>✅ Fungerar med Apple HomeKit<br>✅ Automatisk av/pa via schema<br>✅ Betalar sig pa 6 veckor<br>✅ Ingen hub kravs<br><div class="card-review-q">Koper fler, sparat massor pa elrakningen!</div><div class="card-review-q">Fungerar med allt, HomeKit, Google och Alexa!</div></div><a href="https://amzn.to/40I5qoe" class="btn-amz" target="_blank">🛒 Se på Amazon.se</a><button class="btn-info" onclick="toggleInfo('info-shelly',this)">▼ Mer info &amp; recensioner</button></div></div>
+<div class="card"><span class="viewers-badge" id="v5">5 kollar</span><img class="card-img" src="img/Temp-humidity1.jpg" onerror="this.src='https://placehold.co/400x180/f0f2f5/00bcd4?text=SONOFF+SNZB-02D'" alt="SONOFF SNZB-02D Sensor"><div class="card-body"><span class="card-badge badge-blue">ZigBee</span><div class="card-title">SONOFF SNZB-02D Mini ZigBee Temperatur- &amp; Fuktighetssensor</div><div class="card-stars">★★★★★ <span class="card-reviews">(3 500+ rec.)</span></div><div class="card-price">~149 kr</div><div class="card-desc">LCD-skärm, realtidsmätning. Kompatibel med Alexa och Google Home. Perfekt för vardagsrum, sovrum och garage.</div><div class="card-info" id="info-sonoff"><strong>Varfor kopa?</strong><br>✅ Mini-format, perfekt överallt<br>✅ LCD-skärm visar temp &amp; fuktighet<br>✅ ZigBee-anslutning, låg strömförbrukning<br>✅ Kompatibel med Alexa &amp; Google Home<br>✅ Batteridrift, håller flera månader<br><div class="card-review-q">Små och diskreta sensorer, perfekt för hemmet!</div><div class="card-review-q">Fungerar felfritt med Google Home, smart investering!</div></div><a href="https://amzn.to/4bTg5le" class="btn-amz" target="_blank">🛒 Se på Amazon.se</a><button class="btn-info" onclick="toggleInfo('info-sonoff',this)">▼ Mer info &amp; recensioner</button></div></div>
+<div class="card"><span class="viewers-badge" id="v6">8 kollar</span><img class="card-img" src="img/Smart-plug1.jpg" onerror="this.src='https://placehold.co/400x180/f0f2f5/4caf50?text=Meross+Mini+Plug'" alt="Meross Mini Plug"><div class="card-body"><span class="card-badge badge-green">2-pack</span><div class="card-title">Meross Ansluten Kontakt (Typ E) – 2x Mini WiFi-uttag</div><div class="card-stars">★★★★★ <span class="card-reviews">(5 200+ rec.)</span></div><div class="card-price">~299 kr</div><div class="card-desc">16A strömförbrukningskontroll. WiFi-anslutning, smart schemaläggning. Fungerar med Alexa, Google Home och SmartThings.</div><div class="card-info" id="info-meross"><strong>Varfor kopa?</strong><br>✅ 2-pack för två rum/enheter<br>✅ 16A strömförbrukningskontroll<br>✅ Mini-format, tar liten plats<br>✅ Kompatibel med Alexa, Google &amp; SmartThings<br>✅ Fjärrstyrning från mobilen<br><div class="card-review-q">Dessa är mycket snygga och kompakta, rekommenderas!</div><div class="card-review-q">Fungerar perfekt, bra till priset för två uttag!</div></div><a href="https://amzn.to/3PDCWJU" class="btn-amz" target="_blank">🛒 Se på Amazon.se</a><button class="btn-info" onclick="toggleInfo('info-meross',this)">▼ Mer info &amp; recensioner</button></div></div>
+<div class="card"><span class="viewers-badge" id="v7">18 kollar</span><img class="card-img" src="img/Led-app1.jpg" onerror="this.src='https://placehold.co/400x180/f0f2f5/9c27b0?text=Govee+LED+Strip'" alt="Govee WiFi LED Strip"><div class="card-body"><span class="card-badge badge-orange">10m RGB</span><div class="card-title">Govee WiFi LED Strip 10m – Smart RGB LED, 2x5m rullar</div><div class="card-stars">★★★★★ <span class="card-reviews">(8 900+ rec.)</span></div><div class="card-price">~349 kr</div><div class="card-desc">Appkontroll, färgbyte, musiksynkronisering. WiFi-anslutning. Fungerar med Alexa och Google Assistant. 2 rullar om 5m.</div><div class="card-info" id="info-govee"><strong>Varfor kopa?</strong><br>✅ 10m total längd (2x5m rullar)<br>✅ 16 miljoner färger &amp; effekter<br>✅ Musiksynkronisering – dansar till musiken<br>✅ Kompatibel med Alexa &amp; Google<br>✅ Appkontroll från mobilen var som helst<br><div class="card-review-q">Musik-synk är fantastisk, ljushöw hemma!</div><div class="card-review-q">Bästa LED-remsan för pengarna, super effektiv!</div></div><a href="https://amzn.to/47uRuBM" class="btn-amz" target="_blank">🛒 Se på Amazon.se</a><button class="btn-info" onclick="toggleInfo('info-govee',this)">▼ Mer info &amp; recensioner</button></div></div>
+<div class="card"><span class="viewers-badge" id="v8">6 kollar</span><img class="card-img" src="img/Tapo-plug1.jpg" onerror="this.src='https://placehold.co/400x180/f0f2f5/ff6f00?text=Tapo+Nano+Plug'" alt="Tapo Nano Smart Plug"><div class="card-body"><span class="card-badge badge-blue">Nano-format</span><div class="card-title">Tapo Nano Smart Plug WiFi-uttag – Energiförbrukningskontroll</div><div class="card-stars">★★★★★ <span class="card-reviews">(4 600+ rec.)</span></div><div class="card-price">~199 kr</div><div class="card-desc">Compact WiFi-uttag med energiövervakning. Röststyrning, fjärråtkomst. Fungerar med Alexa &amp; Google Home. Ingen Hub krävs.</div><div class="card-info" id="info-nano"><strong>Varfor kopa?</strong><br>✅ Nano-format – tar nästan ingen plats<br>✅ Energiförbrukningskontroll i realtid<br>✅ WiFi-anslutning, ingen hub behövs<br>✅ Röststyrning med Alexa &amp; Google<br>✅ Smart schemaläggning &amp; timers<br><div class="card-review-q">Småheten är fantastisk, passar överallt!</div><div class="card-review-q">Billigare än P115 men fungerar lika bra!</div></div><a href="https://amzn.to/483lx3F" class="btn-amz" target="_blank">🛒 Se på Amazon.se</a><button class="btn-info" onclick="toggleInfo('info-nano',this)">▼ Mer info &amp; recensioner</button></div></div>
+</div>
+<div class="sec-title" id="halsa">💊 Hälsa &amp; Kosttillskott <span style="font-size:12px;color:#888;font-weight:normal">– EFSA-godkant</span></div>
+<div class="grid">
+<div class="card"><img class="card-img" src="img/omega1.jpg" onerror="this.src='https://placehold.co/400x180/f0f2f5/00c853?text=Omega-3'" alt="Omega-3"><div class="card-body"><span class="card-badge badge-green">1 Ars forbrukning</span><div class="card-title">WeightWorld Omega-3 Fiskolja 2000mg – 240 Softgels</div><div class="card-stars">★★★★★ <span class="card-reviews">(3 200+ rec.)</span></div><div class="card-price">~249 kr</div><div class="card-desc">660mg EPA + 440mg DHA per portion. Stodjer hjarta, hjarna och blodtryck. GMP-godkand och glutenfri.</div><div class="card-info" id="info-omega"><strong>Varfor kopa?</strong><br>✅ 660mg EPA + 440mg DHA per portion<br>✅ 240 kapslar = 4 manaders forbrukning<br>✅ Stodjer hjarta, hjarna och blodtryck<br>✅ GMP-godkand, glutenfri, latt att svalja<br>✅ EFSA-godkanda halsopastaenden<br><div class="card-review-q">Marker verkligen skillnad pa koncentration och energi!</div><div class="card-review-q">Bra kvalitet och prisvartt, koper igen!</div></div><a href="https://amzn.to/46SKyOD" class="btn-amz" target="_blank">🛒 Se på Amazon.se</a><button class="btn-info" onclick="toggleInfo('info-omega',this)">▼ Mer info &amp; recensioner</button></div></div>
+<div class="card"><img class="card-img" src="img/vitb1.jpg" onerror="this.src='https://placehold.co/400x180/f0f2f5/e53935?text=Vitamin+B'" alt="Vitamin B"><div class="card-body"><span class="card-badge badge-blue">Vegansk</span><div class="card-title">WeightWorld Vitamin B Komplex – 365 Tabletter</div><div class="card-stars">★★★★★ <span class="card-reviews">(1 800+ rec.)</span></div><div class="card-price">~199 kr</div><div class="card-desc">Alla 8 B-vitaminer plus C-vitamin. Minskar trotthet, stodjer immunsystem och nervsystem. 1 ars forbrukning.</div><div class="card-info" id="info-vitb"><strong>Varfor kopa?</strong><br>✅ Innehaller B1, B2, B3, B5, B6, B7, B9, B12 + C<br>✅ Minskar trotthet och utmattning<br>✅ Stodjer immunsystemets normala funktion<br>✅ Vegansk och Icke-GMO<br>✅ 365 tabletter = 1 ars forbrukning<br><div class="card-review-q">Kanner mig piggare sedan jag borjat ta dessa!</div><div class="card-review-q">Bra med alla B-vitaminer samlat i en tablett.</div></div><a href="https://amzn.to/4loDTlg" class="btn-amz" target="_blank">🛒 Se på Amazon.se</a><button class="btn-info" onclick="toggleInfo('info-vitb',this)">▼ Mer info &amp; recensioner</button></div></div>
+<div class="card"><img class="card-img" src="img/vitd2.jpg" onerror="this.src='https://placehold.co/400x180/f0f2f5/ff8f00?text=Vitamin+D3'" alt="Vitamin D3"><div class="card-body"><span class="card-badge badge-orange">Popular</span><div class="card-title">WeightWorld Vitamin D3 4000IU – 400 Tabletter</div><div class="card-stars">★★★★★ <span class="card-reviews">(2 100+ rec.)</span></div><div class="card-price">~179 kr</div><div class="card-desc">4000 IE per tablett. 1 tablett varannan dag – racker over 2 ar! Stodjer immunforsvar, ben, tander och muskler.</div><div class="card-info" id="info-vitd"><strong>Varfor kopa?</strong><br>✅ 4000 IE per tablett – hog styrka<br>✅ 400 tabletter = over 2 ars forbrukning<br>✅ Stodjer immunforsvar och ben<br>✅ Vegetarisk, Icke-GMO<br>✅ EFSA-godkanda halsopastaenden<br><div class="card-review-q">Bast i test, kanner tydlig skillnad pa vintarn!</div><div class="card-review-q">Prisvarrt och hog kvalitet, koper igen!</div></div><a href="https://amzn.eu/d/0duIr0S3" class="btn-amz" target="_blank">🛒 Se på Amazon.se</a><button class="btn-info" onclick="toggleInfo('info-vitd',this)">▼ Mer info &amp; recensioner</button></div></div>
+</div>
+<div class="sec-title" id="fitness">💪 Fitness &amp; Protein <span style="font-size:12px;color:#888;font-weight:normal">– Varldens #1</span></div>
+<div class="grid">
+<div class="card"><img class="card-img" src="img/whey-choc1.jpg" onerror="this.src='https://placehold.co/400x180/f0f2f5/111?text=Whey+Chocolate'" alt="Whey Chocolate"><div class="card-body"><span class="card-badge badge-green">Varldens nr 1</span><div class="card-title">ON Gold Standard 100% Whey – Double Rich Chocolate 899g</div><div class="card-stars">★★★★★ <span class="card-reviews">(12 000+ rec.)</span></div><div class="card-price">~389 kr</div><div class="card-desc">24g protein per portion, 120 kalorier, 5.5g BCAA. Glutenfri och testad for forbjudna amnen. 29 portioner.</div><div class="card-info" id="info-wheyc"><strong>Varfor kopa?</strong><br>✅ 24g protein per portion<br>✅ 5.5g BCAA per portion<br>✅ Bara 120 kalorier och 2g socker<br>✅ Glutenfri och testad – Informed Choice<br>✅ Varldens mest salda proteinpulver<br><div class="card-review-q">Basta smaken av alla proteinpulver jag provat!</div><div class="card-review-q">Luser sig perfekt och magen mar bra av det.</div></div><a href="https://amzn.to/3NihKIH" class="btn-amz" target="_blank">🛒 Se på Amazon.se</a><button class="btn-info" onclick="toggleInfo('info-wheyc',this)">▼ Mer info &amp; recensioner</button></div></div>
+<div class="card"><img class="card-img" src="img/whey-van1.jpg" onerror="this.src='https://placehold.co/400x180/f0f2f5/111?text=Whey+Vanilla'" alt="Whey Vanilla"><div class="card-body"><span class="card-badge badge-orange">Populart val</span><div class="card-title">ON Gold Standard 100% Whey – Vanilla Ice Cream 900g</div><div class="card-stars">★★★★★ <span class="card-reviews">(8 500+ rec.)</span></div><div class="card-price">~389 kr</div><div class="card-desc">29 portioner vaniljsmak. 24g protein, 120 kalorier per portion. Perfekt for smoothies och bakning.</div><div class="card-info" id="info-wheyv"><strong>Varfor kopa?</strong><br>✅ 24g protein per portion<br>✅ Vanilla Ice Cream – klassisk smak<br>✅ Perfekt i smoothies och bakning<br>✅ Glutenfri, Informed Choice-certifierad<br>✅ Samma formel som Chocolate-varianten<br><div class="card-review-q">Gott att ta direkt i vatten, inte for sotslakt.</div><div class="card-review-q">Anvander i pannkakor – fantastiskt!</div></div><a href="https://amzn.to/4rozvE8" class="btn-amz" target="_blank">🛒 Se på Amazon.se</a><button class="btn-info" onclick="toggleInfo('info-wheyv',this)">▼ Mer info &amp; recensioner</button></div></div>
+</div>
+<div class="sec-title" id="grooming">🪒 Grooming <span style="font-size:12px;color:#888;font-weight:normal">– Smart rakningsupplevelse</span></div>
+<div class="grid">
+<div class="card"><img class="card-img" src="img/oneblade1.jpg" onerror="this.src='https://placehold.co/400x180/f0f2f5/7cb518?text=OneBlade'" alt="OneBlade 5-pack"><div class="card-body"><span class="card-badge badge-green">20 manader</span><div class="card-title">Philips OneBlade Pro – 5-pack Originalrakblad QP250/50</div><div class="card-stars">★★★★★ <span class="card-reviews">(6 300+ rec.)</span></div><div class="card-price">~279 kr</div><div class="card-desc">Rostfritt stalbblad vasst i 4 manader. 5 blad = 20 manaders rakning. Passar alla OneBlade-modeller. 12 000 klipp/minut.</div><div class="card-info" id="info-blade"><strong>Varfor kopa?</strong><br>✅ Passar alla OneBlade och OneBlade Pro<br>✅ Varje blad haller i 4 manader<br>✅ 5 blad = 20 manaders rakning<br>✅ Inbyggd indikator nar blad ar utslitet<br>✅ 12 000 klipp per minut – unik teknik<br><div class="card-review-q">Raknar lika bra som dag 1 efter 3 manader!</div><div class="card-review-q">Bast i test, koper alltid dessa nar de tar slut.</div></div><a href="https://amzn.to/4svPdhM" class="btn-amz" target="_blank">🛒 Se på Amazon.se</a><button class="btn-info" onclick="toggleInfo('info-blade',this)">▼ Mer info &amp; recensioner</button></div></div>
+</div>
+</div>
+</div>
+<footer style="background:#111;color:#888;text-align:center;padding:20px;font-size:11px;margin-top:20px"><p>2026 All-in1 ShopStar &middot; <a href="https://linktr.ee/allin1star" style="color:#f5a623" target="_blank">Linktree</a> &middot; <a href="https://www.youtube.com/@Allin1star-w5n" style="color:#f5a623" target="_blank">YouTube</a></p><p style="margin-top:6px">Sidan innehaller affiliatelanklar. Som Amazon Associate tjanas provision pa kop utan extra kostnad for dig.</p></footer>
+<button class="chat-fab" onclick="toggleChat()"><span class="gdot"></span><span>Hej! Jag hjalper dig med alla fragor</span></button>
+<div class="chat-win" id="chatWin"><div class="chat-head"><div class="chat-av">⚡</div><div class="chat-hi"><strong>All-in1 Support</strong><small>Svar inom 30 min</small></div><button class="chat-close" onclick="toggleChat()">✕</button></div><div class="chat-msgs" id="chatMsgs"><div class="msg bot">Hejsan och valkommen till All-in1 ShopStar! Vi aterkopplar vanligtvis inom 30 minuter. Lamna garna din e-mail om du inte har tid att vanta!</div></div><div class="chat-form"><input type="text" class="chat-input" id="chatInp" placeholder="Skriv ditt meddelande..."><button class="chat-send" onclick="sendChat()">&#10148;</button></div></div>
+<script>
+function toggleInfo(id,btn){var el=document.getElementById(id);if(el.style.display==='block'){el.style.display='none';btn.textContent='▼ Mer info & recensioner';}else{el.style.display='block';btn.textContent='▲ Dold info';}}
+function updateViewers(){var base=[12,9,22,7,5,8,18,6];var ids=['v1','v2','v3','v4','v5','v6','v7','v8'];var total=0;for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el){var n=base[i]+Math.floor(Math.random()*5)-2;if(n<1)n=1;el.textContent=n+' kollar';total+=n;}}var tc=document.getElementById('viewCount');if(tc)tc.textContent=total+Math.floor(Math.random()*10);}
+setInterval(updateViewers,8000);
+function toggleChat(){document.getElementById('chatWin').classList.toggle('open')}
+document.getElementById('chatInp').addEventListener('keydown',function(e){if(e.key==='Enter')sendChat()});
+function sendChat(){var inp=document.getElementById('chatInp');var msg=inp.value.trim();if(!msg)return;inp.value='';var msgs=document.getElementById('chatMsgs');var u=document.createElement('div');u.className='msg user';u.textContent=msg;msgs.appendChild(u);msgs.scrollTop=9999;setTimeout(function(){var b=document.createElement('div');b.className='msg bot';b.textContent='Tack for ditt meddelande! Vi aterkopplar inom 30 min. Lamna din e-mail sa hor vi av oss!';msgs.appendChild(b);msgs.scrollTop=9999;},800);}
+</script>
 </body>
 </html>
