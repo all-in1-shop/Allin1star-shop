@@ -1,212 +1,748 @@
 <!DOCTYPE html>
+
 <html lang="sv">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>All-in1 ShopStar - Fynd</title>
-<style>
-*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-body{font-family:Arial,sans-serif;background:#f0f2f5;color:#333;overflow-x:hidden}
-.ticker-wrap{background:#f5a623;overflow:hidden;padding:7px 0;white-space:nowrap}
-.ticker-inner{display:inline-block;animation:tick 40s linear infinite}
-@keyframes tick{from{transform:translateX(100vw)}to{transform:translateX(-100%)}}
-.ticker-inner span{font-size:12px;font-weight:bold;margin-right:50px;color:#000}
-.ticker-inner span::before{content:"★ "}
-.live-bar{background:#111;color:#ccc;font-size:11px;padding:6px 16px;display:flex;align-items:center;gap:12px}
-.live-dot{width:7px;height:7px;border-radius:50%;background:#ff4444;animation:blink 1s infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
-header{background:#111;color:white;padding:12px 16px;position:sticky;top:0;z-index:200;text-align:center}
-.logo{font-size:20px;font-weight:bold;color:#f5a623;text-decoration:none}
-.logo span{color:white}
-.sec-title{font-size:16px;font-weight:bold;padding:15px 10px 5px;max-width:1000px;margin:0 auto;color:#111;border-bottom:2px solid #f5a623}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="All-in1 ShopStar – Smarta fynd inom hem, teknik och belysning. Handla via Amazon.se.">
+  <title>All-in1 ShopStar – Fynd</title>
 
-.grid{display:grid;grid-template-columns:repeat(2, 1fr);gap:10px;padding:10px;max-width:1000px;margin:0 auto}
-@media(min-width: 800px) { .grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); } }
+  <!-- ✅ Preconnect för snabbare laddning av externa resurser -->
 
-.card{background:white;border-radius:12px;overflow:hidden;display:flex;flex-direction:column;border:1px solid #eee;position:relative}
-.card-img{width:100%;height:130px;object-fit:cover;background:#eee}
-.card-body{padding:10px;flex:1;display:flex;flex-direction:column}
-.card-title{font-size:11px;font-weight:bold;line-height:1.3;margin-bottom:8px;height:42px;overflow:hidden;color:#222}
-.card-price{font-size:16px;font-weight:bold;color:#cc0000;margin-bottom:8px}
-.btn-amz{display:block;background:linear-gradient(90deg,#f5a623,#e8910a);color:#000;text-align:center;padding:10px;border-radius:8px;font-weight:bold;font-size:11px;text-decoration:none;margin-top:auto}
-.btn-info{background:none;border:none;color:#777;font-size:10px;margin-top:8px;cursor:pointer;text-decoration:underline;text-align:center;width:100%}
-.card-info{display:none;font-size:10px;color:#555;padding:5px 0;line-height:1.4;text-align:left}
-.viewers-badge{position:absolute;top:6px;right:6px;background:rgba(0,0,0,.7);color:#00e676;font-size:8px;font-weight:bold;padding:2px 6px;border-radius:20px}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Barlow:wght@400;600&display=swap" rel="stylesheet">
 
-/* MEGA FYND SLIDER */
-.mega-wrap{max-width:1000px;margin:14px auto 4px;padding:0 10px}
-.mega-card{background:linear-gradient(135deg,#1a0a00,#2d1200,#111);border:2px solid #f5a623;border-radius:16px;overflow:hidden;display:flex;align-items:stretch;position:relative;box-shadow:0 6px 28px rgba(245,166,35,.25);text-decoration:none;min-height:180px}
-.mega-badge{position:absolute;top:0;left:0;background:#f5a623;color:#000;font-size:10px;font-weight:900;padding:4px 12px;border-radius:0 0 10px 0;z-index:10}
-.mega-img{width:38%;object-fit:cover;display:block;background:#0d0600}
-.mega-body{flex:1;padding:14px 16px;display:flex;flex-direction:column;justify-content:center;gap:6px}
-.mega-title{font-size:12px;font-weight:bold;color:#fff;line-height:1.4}
-.mega-price{font-size:22px;font-weight:900;color:#f5a623}
-.mega-desc{font-size:10px;color:#aaa;line-height:1.5}
-.mega-btn{display:block;background:linear-gradient(90deg,#f5a623,#e8910a);color:#000;text-align:center;padding:10px;border-radius:8px;font-weight:900;font-size:12px}
-</style>
+  <style>
+    /* ================================================
+       VARIABLER & RESET
+    ================================================ */
+    :root {
+      --gold: #f5a623;
+      --gold-dark: #c97e0a;
+      --black: #111;
+      --dark: #1a1a1a;
+      --bg: #f0f2f5;
+      --white: #ffffff;
+      --text: #222;
+      --text-muted: #666;
+      --red: #cc0000;
+      --radius: 12px;
+      --shadow: 0 4px 18px rgba(0,0,0,0.10);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: 'Barlow', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    /* ================================================
+       TICKER
+    ================================================ */
+    .ticker-wrap {
+      background: var(--gold);
+      overflow: hidden;
+      padding: 7px 0;
+      white-space: nowrap;
+    }
+
+    .ticker-inner {
+      display: inline-block;
+      animation: tick 40s linear infinite;
+    }
+
+    /* Pausa animation när sidan inte är synlig – sparar batteri */
+    .ticker-inner.paused {
+      animation-play-state: paused;
+    }
+
+    @keyframes tick {
+      from { transform: translateX(100vw); }
+      to   { transform: translateX(-100%); }
+    }
+
+    .ticker-inner span {
+      font-family: 'Barlow Condensed', Arial, sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      margin-right: 60px;
+      color: var(--black);
+    }
+
+    .ticker-inner span::before {
+      content: "★ ";
+    }
+
+    /* ================================================
+       AFFILIATE-UPPLYSNING (lagkrav)
+    ================================================ */
+    .affiliate-notice {
+      background: #fffbe6;
+      border-bottom: 1px solid #f0c040;
+      color: #7a5c00;
+      font-size: 11px;
+      text-align: center;
+      padding: 5px 16px;
+    }
+
+    /* ================================================
+       HEADER
+    ================================================ */
+    header {
+      background: var(--black);
+      color: var(--white);
+      padding: 12px 16px;
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+    }
+
+    .logo {
+      font-family: 'Barlow Condensed', Arial, sans-serif;
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--gold);
+      letter-spacing: 1px;
+    }
+
+    .logo span {
+      color: var(--white);
+    }
+
+    /* ================================================
+       SEKTIONSRUBRIKER
+    ================================================ */
+    .sec-title {
+      font-family: 'Barlow Condensed', Arial, sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      padding: 18px 14px 6px;
+      max-width: 1000px;
+      margin: 0 auto;
+      color: var(--black);
+      border-bottom: 3px solid var(--gold);
+      letter-spacing: 0.5px;
+    }
+
+    /* ================================================
+       MEGA FYND SLIDER
+    ================================================ */
+    .mega-wrap {
+      max-width: 1000px;
+      margin: 16px auto 4px;
+      padding: 0 10px;
+    }
+
+    .mega-card {
+      background: linear-gradient(135deg, #1a0a00, #2d1200, #111);
+      border: 2px solid var(--gold);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      align-items: stretch;
+      position: relative;
+      box-shadow: 0 6px 28px rgba(245, 166, 35, 0.25);
+      min-height: 180px;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .mega-card:hover,
+    .mega-card:focus-visible {
+      box-shadow: 0 8px 36px rgba(245, 166, 35, 0.45);
+      outline: 3px solid var(--gold);
+    }
+
+    .mega-badge {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: var(--gold);
+      color: var(--black);
+      font-size: 10px;
+      font-weight: 900;
+      padding: 4px 12px;
+      border-radius: 0 0 10px 0;
+      z-index: 10;
+      font-family: 'Barlow Condensed', Arial, sans-serif;
+      letter-spacing: 0.5px;
+    }
+
+    .mega-img {
+      width: 38%;
+      object-fit: cover;
+      background: #0d0600;
+    }
+
+    .mega-body {
+      flex: 1;
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .mega-title {
+      font-family: 'Barlow Condensed', Arial, sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.3;
+    }
+
+    .mega-price {
+      font-family: 'Barlow Condensed', Arial, sans-serif;
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--gold);
+    }
+
+    .mega-desc {
+      font-size: 11px;
+      color: #aaa;
+      line-height: 1.5;
+    }
+
+    .mega-btn {
+      display: block;
+      background: linear-gradient(90deg, var(--gold), var(--gold-dark));
+      color: var(--black);
+      text-align: center;
+      padding: 10px;
+      border-radius: 8px;
+      font-weight: 900;
+      font-size: 12px;
+      font-family: 'Barlow Condensed', Arial, sans-serif;
+      letter-spacing: 0.5px;
+      transition: filter 0.2s;
+    }
+
+    .mega-btn:hover {
+      filter: brightness(1.1);
+    }
+
+    /* Slider-indikatorer */
+    .mega-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .mega-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #ccc;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+      padding: 0;
+    }
+
+    .mega-dot.active {
+      background: var(--gold);
+      width: 20px;
+      border-radius: 4px;
+    }
+
+    /* ================================================
+       PRODUKTGRID
+    ================================================ */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      padding: 10px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 600px) {
+      .grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (min-width: 800px) {
+      .grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      }
+    }
+
+    /* ================================================
+       PRODUKTKORT
+    ================================================ */
+    .card {
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #e8e8e8;
+      position: relative;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.13);
+    }
+
+    .card-img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      background: #eee;
+    }
+
+    .card-body {
+      padding: 10px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-title {
+      font-size: 11px;
+      font-weight: 600;
+      line-height: 1.35;
+      margin-bottom: 8px;
+      /* Klampar titeln till 3 rader */
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      color: var(--text);
+    }
+
+    .card-price {
+      font-family: 'Barlow Condensed', Arial, sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--red);
+      margin-bottom: 8px;
+    }
+
+    /* ✅ Affiliate-länkknapp – tydlig och ärlig text */
+    .btn-amz {
+      display: block;
+      background: linear-gradient(90deg, var(--gold), var(--gold-dark));
+      color: var(--black);
+      text-align: center;
+      padding: 10px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 11px;
+      margin-top: auto;
+      font-family: 'Barlow Condensed', Arial, sans-serif;
+      letter-spacing: 0.5px;
+      transition: filter 0.2s;
+    }
+
+    .btn-amz:hover {
+      filter: brightness(1.08);
+    }
+
+    /* ================================================
+       FOOTER
+    ================================================ */
+    footer {
+      background: var(--black);
+      color: #888;
+      font-size: 11px;
+      text-align: center;
+      padding: 20px 16px;
+      margin-top: 30px;
+      line-height: 1.7;
+    }
+
+    footer a {
+      color: var(--gold);
+    }
+
+    /* ================================================
+       TILLGÄNGLIGHET – fokussynlighet
+    ================================================ */
+    :focus-visible {
+      outline: 3px solid var(--gold);
+      outline-offset: 2px;
+    }
+  </style>
+
 </head>
 <body>
 
-<div class="ticker-wrap"><div class="ticker-inner"><span>SUPERPRISER PÅ SMARTA HEM</span><span>FRI FRAKT ÖVER 299 KR</span><span>BEGRÄNSAT ANTAL</span></div></div>
-<div class="live-bar"><div class="live-dot"></div><span><strong id="viewCount">61</strong> kollar just nu</span></div>
+  <!-- TICKER -->
 
-<header><a href="#" class="logo">All-in1 <span>ShopStar</span></a></header>
-
-<div class="mega-wrap" id="megaSlider">
-  <a href="https://amzn.to/4dlO5ck" target="_blank" class="mega-card" id="megaLink">
-    <span class="mega-badge">⚡ MEGA FYND</span>
-    <img class="mega-img" id="megaImg" src="img/IMG_9393.jpg" onerror="this.src='https://placehold.co/300x180?text=Laddare'">
-    <div class="mega-body">
-      <div class="mega-title" id="megaTitle">INIU Trådlöst Laddningsstativ 15W</div>
-      <div class="mega-price" id="megaPrice">~249 kr</div>
-      <div class="mega-desc" id="megaDesc">15W snabb trådlös laddning · Självlysande LED · Passar iPhone & Samsung</div>
-      <span class="mega-btn">🛒 Se på Amazon.se</span>
+  <div class="ticker-wrap" aria-hidden="true">
+    <div class="ticker-inner" id="ticker">
+      <span>SUPERPRISER PÅ SMARTA HEM</span>
+      <span>FRI FRAKT ÖVER 299 KR PÅ AMAZON</span>
+      <span>BEGRÄNSAT ANTAL – PASSA PÅ</span>
+      <span>SMARTA HEM & BELYSNING</span>
+      <span>HANDLA ENKELT VIA AMAZON.SE</span>
     </div>
-  </a>
+  </div>
+
+  <!-- ✅ AFFILIATE-UPPLYSNING (lagkrav: konsumentverket & ICC) -->
+
+  <div class="affiliate-notice" role="note">
+    ℹ️ Vi samarbetar med Amazon. Köp via våra länkar ger oss en liten provision – utan extra kostnad för dig.
+  </div>
+
+  <!-- HEADER -->
+
+  <header>
+    <a href="#" class="logo" aria-label="All-in1 ShopStar – startsida">All-in1 <span>ShopStar</span></a>
+  </header>
+
+  <!-- MEGA FYND SLIDER -->
+
+  <div class="mega-wrap">
+    <a
+      href="https://amzn.to/4dlO5ck"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="mega-card"
+      id="megaLink"
+      aria-label="MEGA FYND: INIU Trådlöst Laddningsstativ 15W – ~249 kr på Amazon"
+    >
+      <span class="mega-badge">⚡ MEGA FYND</span>
+      <img
+        class="mega-img"
+        id="megaImg"
+        src="img/IMG_9393.jpg"
+        alt="INIU Trådlöst Laddningsstativ 15W"
+        width="300"
+        height="180"
+        onerror="this.src='https://placehold.co/300x180?text=Fynd';this.onerror=null"
+      >
+      <div class="mega-body">
+        <div class="mega-title" id="megaTitle">INIU Trådlöst Laddningsstativ 15W</div>
+        <div class="mega-price" id="megaPrice">~249 kr</div>
+        <div class="mega-desc" id="megaDesc">15W snabb trådlös laddning · Självlysande LED · Passar iPhone &amp; Samsung</div>
+        <span class="mega-btn">🛒 Se på Amazon.se</span>
+      </div>
+    </a>
+
+```
+<!-- Slider-prickar för navigation -->
+<div class="mega-dots" role="tablist" aria-label="Mega fynd-navigation">
+  <button class="mega-dot active" data-index="0" aria-label="Visa fynd 1" aria-selected="true" role="tab"></button>
+  <button class="mega-dot" data-index="1" aria-label="Visa fynd 2" aria-selected="false" role="tab"></button>
+  <button class="mega-dot" data-index="2" aria-label="Visa fynd 3" aria-selected="false" role="tab"></button>
+  <button class="mega-dot" data-index="3" aria-label="Visa fynd 4" aria-selected="false" role="tab"></button>
 </div>
+```
 
-<div class="sec-title">🏠 Smarta Hem & Teknik</div>
-<div class="grid">
-    <div class="card">
-        <span class="viewers-badge">14 kollar</span>
-        <img class="card-img" src="img/Tapo-plug1.jpg.jpg">
-        <div class="card-body">
-            <div class="card-title">Tapo Nano Smart Plug WiFi med energimätning</div>
-            <div class="card-price">249 kr</div>
-            <a href="https://amzn.to/47uRuBM" class="btn-amz" target="_blank">KÖP PÅ AMAZON</a>
-        </div>
-    </div>
-    <div class="card">
-        <span class="viewers-badge">8 kollar</span>
-        <img class="card-img" src="img/Smart-plug1.jpg.jpg">
-        <div class="card-body">
-            <div class="card-title">Meross 2-pack mini-wifi-uttag 16A</div>
-            <div class="card-price">299 kr</div>
-            <a href="https://amzn.to/4bTg5le" class="btn-amz" target="_blank">KÖP PÅ AMAZON</a>
-        </div>
-    </div>
-    <div class="card">
-        <span class="viewers-badge">5 kollar</span>
-        <img class="card-img" src="img/Temp-humidity1.jpg.jpg">
-        <div class="card-body">
-            <div class="card-title">SONOFF ZigBee Temp & Fuktighetssensor</div>
-            <div class="card-price">149 kr</div>
-            <a href="https://amzn.to/483lx3F" class="btn-amz" target="_blank">KÖP PÅ AMAZON</a>
-        </div>
-    </div>
-    <div class="card">
-        <span class="viewers-badge">11 kollar</span>
-        <img class="card-img" src="img/Cam3.jpg">
-        <div class="card-body">
-            <div class="card-title">Tapo C200 Övervakningskamera 1080p</div>
-            <div class="card-price">349 kr</div>
-            <a href="https://amzn.to/4sAk653" class="btn-amz" target="_blank">KÖP PÅ AMAZON</a>
-        </div>
-    </div>
-    <div class="card">
-        <span class="viewers-badge">22 kollar</span>
-        <img class="card-img" src="img/Fire3.jpg">
-        <div class="card-body">
-            <div class="card-title">Amazon Fire TV Stick HD Alexa</div>
-            <div class="card-price">399 kr</div>
-            <a href="https://amzn.to/4bPEqrR" class="btn-amz" target="_blank">KÖP PÅ AMAZON</a>
-        </div>
-    </div>
-    <div class="card">
-        <span class="viewers-badge">12 kollar</span>
-        <img class="card-img" src="img/Hey-google.jpg.jpg">
-        <div class="card-body">
-            <div class="card-title">Govee Alexa Smart Bulb E27 2st</div>
-            <div class="card-price">229 kr</div>
-            <a href="https://amzn.to/4bWKNd3" class="btn-amz" target="_blank">KÖP PÅ AMAZON</a>
-        </div>
-    </div>
-</div>
+  </div>
 
-<div class="sec-title">💡 Belysning & Trädgård</div>
-<div class="grid">
-    <div class="card">
-        <span class="viewers-badge">18 kollar</span>
-        <img class="card-img" src="img/Led-app1.jpg.jpg">
-        <div class="card-body">
-            <div class="card-title">Govee WiFi LED Strip 10m RGB</div>
-            <div class="card-price">349 kr</div>
-            <a href="https://amzn.to/3PDCWJU" class="btn-amz" target="_blank">KÖP PÅ AMAZON</a>
-        </div>
-    </div>
-    <div class="card">
-        <span class="viewers-badge">9 kollar</span>
-        <img class="card-img" src="img/Garden-light.jpg.jpg">
-        <div class="card-body">
-            <div class="card-title">12-pack Solcellslampor IP67</div>
-            <div class="card-price">179 kr</div>
-            <a href="https://amzn.to/4s3wCca" class="btn-amz" target="_blank">KÖP PÅ AMAZON</a>
-        </div>
-    </div>
-    <div class="card">
-        <span class="viewers-badge">10 kollar</span>
-        <img class="card-img" src="img/Soap-foam.jpg.jpg">
-        <div class="card-body">
-            <div class="card-title">Automatisk tvåldispenser 380ml</div>
-            <div class="card-price">199 kr</div>
-            <a href="https://amzn.to/4vc5udY" class="btn-amz" target="_blank">KÖP PÅ AMAZON</a>
-        </div>
-    </div>
-    <div class="card">
-        <span class="viewers-badge">7 kollar</span>
-        <img class="card-img" src="img/Alexa-controller.jpg.jpg">
-        <div class="card-body">
-            <div class="card-title">BroadLink RM4 Mini IR-fjärrkontroll</div>
-            <div class="card-price">299 kr</div>
-            <a href="https://amzn.to/4dOfgfU" class="btn-amz" target="_blank">KÖP PÅ AMAZON</a>
-        </div>
-    </div>
-    <div class="card">
-        <span class="viewers-badge">6 kollar</span>
-        <img class="card-img" src="img/Flower-drip.jpg.jpg">
-        <div class="card-body">
-            <div class="card-title">PChero Solcellsbevattningssystem</div>
-            <div class="card-price">349 kr</div>
-            <a href="https://amzn.to/4thJsVq" class="btn-amz" target="_blank">KÖP PÅ AMAZON</a>
-        </div>
-    </div>
-    <div class="card">
-        <span class="viewers-badge">15 kollar</span>
-        <img class="card-img" src="img/Usb-aircool.jpg.jpg">
-        <div class="card-body">
-            <div class="card-title">Bärbar Luftkylare Mini AC USB</div>
-            <div class="card-price">249 kr</div>
-            <a href="https://amzn.to/4sCZ3ia" class="btn-amz" target="_blank">KÖP PÅ AMAZON</a>
-        </div>
-    </div>
-</div>
+  <!-- ======================================
+       SEKTION 1: SMARTA HEM & TEKNIK
+  ======================================= -->
 
-<script>
-// SLIDER LOGIC
-const megaItems = [
-    { title: "INIU Trådlöst Laddningsstativ 15W", price: "~249 kr", desc: "15W snabb trådlös laddning för iPhone & Samsung.", img: "img/IMG_9393.jpg", link: "https://amzn.to/4dlO5ck" },
-    { title: "Tapo C200 Övervakningskamera", price: "349 kr", desc: "1080p Full HD med nattsyn och rörelsedetektering.", img: "img/Cam3.jpg", link: "https://amzn.to/4sAk653" },
-    { title: "Amazon Fire TV Stick HD", price: "399 kr", desc: "Streama allt ditt favoritinnehåll direkt till din TV.", img: "img/Fire3.jpg", link: "https://amzn.to/4bPEqrR" },
-    { title: "Govee WiFi LED Strip 10m", price: "349 kr", desc: "Smart RGB-belysning med musiksynkronisering.", img: "img/Led-app1.jpg.jpg", link: "https://amzn.to/3PDCWJU" }
-];
+  <div class="sec-title">🏠 Smarta Hem &amp; Teknik</div>
+  <div class="grid" id="grid-smart-hem">
+    <!-- Kort genereras av JavaScript nedan -->
+  </div>
 
-let currentIndex = 0;
-function rotateMega() {
-    currentIndex = (currentIndex + 1) % megaItems.length;
-    const item = megaItems[currentIndex];
-    document.getElementById('megaTitle').textContent = item.title;
-    document.getElementById('megaPrice').textContent = item.price;
-    document.getElementById('megaDesc').textContent = item.desc;
-    document.getElementById('megaImg').src = item.img;
-    document.getElementById('megaLink').href = item.link;
-}
-setInterval(rotateMega, 15000); // Byt var 15:e sekund
+  <!-- ======================================
+       SEKTION 2: BELYSNING & TRÄDGÅRD
+  ======================================= -->
 
-function tog(id,btn){
-    var el=document.getElementById(id);
-    if(el.style.display==='block'){el.style.display='none';btn.textContent='Info';}
-    else{el.style.display='block';btn.textContent='Dölj';}
-}
-</script>
+  <div class="sec-title">💡 Belysning &amp; Trädgård</div>
+  <div class="grid" id="grid-belysning">
+    <!-- Kort genereras av JavaScript nedan -->
+  </div>
+
+  <!-- FOOTER MED AFFILIATE-INFO -->
+
+  <footer>
+    <p><strong style="color:var(--gold)">All-in1 ShopStar</strong></p>
+    <p style="margin-top:6px">
+      Vi är deltagare i Amazon Services LLC Associates Program och Amazons affiliateprogram.<br>
+      Som Amazon Associate tjänar vi provision på kvalificerade köp – utan extra kostnad för dig.
+    </p>
+    <p style="margin-top:8px">
+      Priser och tillgänglighet kan ändras. Kontrollera alltid aktuellt pris på Amazon.se.
+    </p>
+    <p style="margin-top:8px">© 2025 All-in1 ShopStar</p>
+  </footer>
+
+  <script>
+    'use strict';
+
+    /* ================================================
+       PRODUKTDATA – lätt att underhålla på ett ställe
+       ✅ Inga fejkade "kollar"-siffror
+       ✅ Korrekta filnamn (inga .jpg.jpg)
+    ================================================ */
+    const products = {
+      smartHem: [
+        {
+          title: 'Tapo Nano Smart Plug WiFi med energimätning',
+          price: '249 kr',
+          img: 'img/Tapo-plug1.jpg',
+          link: 'https://amzn.to/47uRuBM',
+          alt: 'Tapo Nano Smart Plug WiFi-kontakt med energimätning'
+        },
+        {
+          title: 'Meross 2-pack mini-WiFi-uttag 16A',
+          price: '299 kr',
+          img: 'img/Smart-plug1.jpg',
+          link: 'https://amzn.to/4bTg5le',
+          alt: 'Meross mini WiFi-uttag 2-pack 16A'
+        },
+        {
+          title: 'SONOFF ZigBee Temp- & Fuktighetssensor',
+          price: '149 kr',
+          img: 'img/Temp-humidity1.jpg',
+          link: 'https://amzn.to/483lx3F',
+          alt: 'SONOFF ZigBee temperatur- och fuktighetssensor'
+        },
+        {
+          title: 'Tapo C200 Övervakningskamera 1080p',
+          price: '349 kr',
+          img: 'img/Cam3.jpg',
+          link: 'https://amzn.to/4sAk653',
+          alt: 'Tapo C200 inomhuskamera med 1080p och nattsyn'
+        },
+        {
+          title: 'Amazon Fire TV Stick HD med Alexa',
+          price: '399 kr',
+          img: 'img/Fire3.jpg',
+          link: 'https://amzn.to/4bPEqrR',
+          alt: 'Amazon Fire TV Stick HD med Alexa Voice Remote'
+        },
+        {
+          title: 'Govee Alexa Smart Bulb E27 2-pack',
+          price: '229 kr',
+          img: 'img/Hey-google.jpg',
+          link: 'https://amzn.to/4bWKNd3',
+          alt: 'Govee smarta E27-glödlampor 2-pack kompatibla med Alexa'
+        }
+      ],
+      belysning: [
+        {
+          title: 'Govee WiFi LED-strip 10m RGB',
+          price: '349 kr',
+          img: 'img/Led-app1.jpg',
+          link: 'https://amzn.to/3PDCWJU',
+          alt: 'Govee WiFi LED-strip 10 meter RGB med app-styrning'
+        },
+        {
+          title: '12-pack Solcellslampor IP67',
+          price: '179 kr',
+          img: 'img/Garden-light.jpg',
+          link: 'https://amzn.to/4s3wCca',
+          alt: 'Solcellsdrivna trädgårdslampor IP67 12-pack'
+        },
+        {
+          title: 'Automatisk Tvåldispenser 380ml',
+          price: '199 kr',
+          img: 'img/Soap-foam.jpg',
+          link: 'https://amzn.to/4vc5udY',
+          alt: 'Beröringsfri automatisk tvåldispenser 380ml'
+        },
+        {
+          title: 'BroadLink RM4 Mini IR-fjärrkontroll',
+          price: '299 kr',
+          img: 'img/Alexa-controller.jpg',
+          link: 'https://amzn.to/4dOfgfU',
+          alt: 'BroadLink RM4 Mini smart IR-fjärrkontroll för hemmaelektronik'
+        },
+        {
+          title: 'PChero Solcellsbevattningssystem',
+          price: '349 kr',
+          img: 'img/Flower-drip.jpg',
+          link: 'https://amzn.to/4thJsVq',
+          alt: 'PChero automatiskt solcellsdrivet droppbevattningssystem'
+        },
+        {
+          title: 'Bärbar Mini-luftkylare USB AC',
+          price: '249 kr',
+          img: 'img/Usb-aircool.jpg',
+          link: 'https://amzn.to/4sCZ3ia',
+          alt: 'Bärbar USB-driven mini-luftkylare för skrivbordet'
+        }
+      ]
+    };
+
+    /* ================================================
+       MEGA FYND SLIDER-DATA
+    ================================================ */
+    const megaItems = [
+      {
+        title: 'INIU Trådlöst Laddningsstativ 15W',
+        price: '~249 kr',
+        desc: '15W snabb trådlös laddning · Självlysande LED · Passar iPhone &amp; Samsung',
+        img: 'img/IMG_9393.jpg',
+        link: 'https://amzn.to/4dlO5ck',
+        alt: 'INIU trådlöst laddningsstativ 15W'
+      },
+      {
+        title: 'Tapo C200 Övervakningskamera',
+        price: '349 kr',
+        desc: '1080p Full HD med nattsyn och rörelsedetektering.',
+        img: 'img/Cam3.jpg',
+        link: 'https://amzn.to/4sAk653',
+        alt: 'Tapo C200 övervakningskamera 1080p'
+      },
+      {
+        title: 'Amazon Fire TV Stick HD',
+        price: '399 kr',
+        desc: 'Streama allt ditt favoritinnehåll direkt till din TV med Alexa.',
+        img: 'img/Fire3.jpg',
+        link: 'https://amzn.to/4bPEqrR',
+        alt: 'Amazon Fire TV Stick HD'
+      },
+      {
+        title: 'Govee WiFi LED-strip 10m',
+        price: '349 kr',
+        desc: 'Smart RGB-belysning med musiksynkronisering och app-styrning.',
+        img: 'img/Led-app1.jpg',
+        link: 'https://amzn.to/3PDCWJU',
+        alt: 'Govee WiFi LED-strip 10 meter RGB'
+      }
+    ];
+
+    /* ================================================
+       RENDERA PRODUKTKORT
+    ================================================ */
+    function createCard(product) {
+      const article = document.createElement('article');
+      article.className = 'card';
+
+      article.innerHTML = `
+        <img
+          class="card-img"
+          src="${product.img}"
+          alt="${product.alt}"
+          loading="lazy"
+          width="300"
+          height="140"
+          onerror="this.src='https://placehold.co/300x140?text=Bild+saknas';this.onerror=null"
+        >
+        <div class="card-body">
+          <h2 class="card-title">${product.title}</h2>
+          <div class="card-price">${product.price}</div>
+          <a
+            href="${product.link}"
+            class="btn-amz"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="${product.title} – Köp på Amazon.se (affiliatelänk)"
+          >
+            🛒 Köp på Amazon.se
+          </a>
+        </div>
+      `;
+
+      return article;
+    }
+
+    function renderGrid(gridId, items) {
+      const grid = document.getElementById(gridId);
+      if (!grid) return;
+      const fragment = document.createDocumentFragment();
+      items.forEach(item => fragment.appendChild(createCard(item)));
+      grid.appendChild(fragment);
+    }
+
+    renderGrid('grid-smart-hem', products.smartHem);
+    renderGrid('grid-belysning', products.belysning);
+
+    /* ================================================
+       MEGA SLIDER
+    ================================================ */
+    let currentIndex = 0;
+    let sliderInterval = null;
+    const dots = document.querySelectorAll('.mega-dot');
+
+    function updateMega(index) {
+      const item = megaItems[index];
+      const link = document.getElementById('megaLink');
+      const img  = document.getElementById('megaImg');
+
+      document.getElementById('megaTitle').textContent = item.title;
+      document.getElementById('megaPrice').textContent = item.price;
+      // innerHTML är säkert här – data är hårdkodad av oss
+      document.getElementById('megaDesc').innerHTML = item.desc;
+      img.src = item.img;
+      img.alt = item.alt;
+      link.href = item.link;
+      link.setAttribute('aria-label', `MEGA FYND: ${item.title} – ${item.price} på Amazon`);
+
+      dots.forEach((dot, i) => {
+        const isActive = i === index;
+        dot.classList.toggle('active', isActive);
+        dot.setAttribute('aria-selected', String(isActive));
+      });
+
+      currentIndex = index;
+    }
+
+    function nextSlide() {
+      updateMega((currentIndex + 1) % megaItems.length);
+    }
+
+    function startSlider() {
+      sliderInterval = setInterval(nextSlide, 15000);
+    }
+
+    function stopSlider() {
+      clearInterval(sliderInterval);
+    }
+
+    // Klick på prickar
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        stopSlider();
+        updateMega(parseInt(dot.dataset.index, 10));
+        startSlider();
+      });
+    });
+
+    startSlider();
+
+    /* ================================================
+       PAUSA ANIMATIONER NÄR SIDAN ÄR DOLD
+       – sparar CPU och batteri
+    ================================================ */
+    const ticker = document.getElementById('ticker');
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        ticker.classList.add('paused');
+        stopSlider();
+      } else {
+        ticker.classList.remove('paused');
+        startSlider();
+      }
+    });
+  </script>
+
 </body>
 </html>
