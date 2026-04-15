@@ -1,145 +1,137 @@
 <!DOCTYPE html>
+
 <html lang="sv">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="All-in1 ShopStar – Handplockat smarta hem, teknik och belysning till bästa pris via Amazon.se.">
   <title>All-in1 ShopStar – Smarta Fynd</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
   <style>
     :root {
-      --gold:#e9a825;--gold-light:#f7c84a;--gold-dark:#b87c0d;
-      --ink:#0f0e0c;--ink-soft:#1e1c18;
-      --paper:#1a1814;--warm-gray:#232018;--card-bg:#242019;--card-border:#2e2a22;
-      --muted:#8a8070;--white:#fff;--red:#d94040;--green:#2a9d5c;
-      --radius-sm:8px;--radius-md:14px;--radius-lg:20px;
-      --shadow-card:0 2px 12px rgba(0,0,0,.3),0 1px 3px rgba(0,0,0,.2);
-      --shadow-lift:0 8px 32px rgba(0,0,0,.4),0 2px 8px rgba(0,0,0,.3);
+      --gold:#e9a825; --gold-light:#f7c84a; --gold-dark:#b87c0d;
+      --ink:#0f0e0c; --paper:#1a1814; --warm-gray:#232018;
+      --card-bg:#201e18; --card-border:#2e2a22;
+      --muted:#8a8070; --red:#d94040; --green:#2a9d5c;
+      --radius-sm:8px; --radius-md:14px; --radius-lg:20px;
+      --shadow-card:0 2px 12px rgba(0,0,0,.35);
+      --shadow-lift:0 8px 32px rgba(0,0,0,.5);
       --t:all .22s cubic-bezier(.4,0,.2,1);
     }
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-    html{scroll-behavior:smooth}
-    body{font-family:'DM Sans',system-ui,sans-serif;background:var(--paper);color:#c8bfaa;overflow-x:hidden;-webkit-font-smoothing:antialiased;width:100%;max-width:100vw}
-    img{display:block;max-width:100%}
-    a{text-decoration:none;color:inherit}
-    h1,h2,h3{font-family:'DM Serif Display',Georgia,serif}
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent; }
+    html { scroll-behavior:smooth; }
+    body { font-family:'DM Sans',system-ui,sans-serif; background:var(--paper); color:#c8bfaa; overflow-x:hidden; -webkit-font-smoothing:antialiased; }
+    img { display:block; max-width:100%; height:auto; }
+    a { text-decoration:none; color:inherit; }
+    h1,h2,h3 { font-family:'DM Serif Display',Georgia,serif; }
+    :focus-visible { outline:3px solid var(--gold); outline-offset:3px; }
 
     /* TICKER */
-    .ticker-wrap{background:#0a0908;overflow:hidden;padding:9px 0;white-space:nowrap}
-    .ticker-inner{display:inline-block;animation:tick 45s linear infinite}
-    .ticker-inner.paused{animation-play-state:paused}
-    @keyframes tick{from{transform:translateX(100vw)}to{transform:translateX(-100%)}}
-    .ticker-inner span{font-size:11px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;margin-right:64px;color:var(--gold)}
-    .ticker-inner span::before{content:"✦  ";color:var(--gold-light)}
+    .ticker-wrap { background:#0a0908; overflow:hidden; padding:10px 0; white-space:nowrap; }
+    .ticker-inner { display:inline-block; animation:tick 40s linear infinite; }
+    @keyframes tick { from{transform:translateX(100vw)} to{transform:translateX(-100%)} }
+    .ticker-inner span { font-size:10px; font-weight:700; letter-spacing:.9px; text-transform:uppercase; margin-right:56px; color:var(--gold); }
+    .ticker-inner span::before { content:"✦  "; color:var(--gold-light); }
 
-    /* NOTICES */
-    .notice{background:#1e1b14;border-bottom:1px solid #2e2820;text-align:center;font-size:11px;color:var(--muted);padding:6px 16px}
+    /* NOTICE */
+    .notice { background:#1a1710; border-bottom:1px solid #2a2418; text-align:center; font-size:11px; color:var(--muted); padding:8px 16px; }
+    .notice strong { color:#c8a84a; }
 
     /* HEADER */
-    header{background:#141210;border-bottom:1px solid #2a2520;position:sticky;top:0;z-index:300;padding:0 16px;display:flex;align-items:center;justify-content:space-between;height:54px;box-shadow:0 2px 12px rgba(0,0,0,.4)}
-    .logo{font-family:'DM Serif Display',Georgia,serif;font-size:20px;color:#e8dcc8;letter-spacing:-.3px}
-    .logo em{color:var(--gold-dark);font-style:normal}
-    .header-badge{font-size:10px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;background:var(--gold);color:var(--ink);padding:4px 10px;border-radius:20px;white-space:nowrap}
+    header { background:#131110; border-bottom:1px solid #2a2418; position:sticky; top:0; z-index:300; padding:0 16px; display:flex; align-items:center; justify-content:space-between; height:58px; box-shadow:0 2px 16px rgba(0,0,0,.5); }
+    .logo { font-family:'DM Serif Display',Georgia,serif; font-size:21px; color:#ede3cc; }
+    .logo em { color:var(--gold); font-style:normal; }
+    .header-badge { font-size:10px; font-weight:700; letter-spacing:.6px; text-transform:uppercase; background:var(--gold); color:var(--ink); padding:5px 12px; border-radius:20px; }
 
     /* TRUST BAR */
-    .trust-bar{background:var(--warm-gray);display:flex;justify-content:center;gap:20px;padding:10px 12px;flex-wrap:wrap;border-bottom:1px solid #2e2820}
-    .trust-item{display:flex;align-items:center;gap:5px;font-size:10px;font-weight:600;color:#a09070}
+    .trust-bar { background:var(--warm-gray); display:flex; justify-content:center; gap:24px; padding:10px 16px; flex-wrap:wrap; border-bottom:1px solid #2e2820; }
+    .trust-item { font-size:11px; font-weight:600; color:#9a9080; display:flex; align-items:center; gap:5px; }
 
-    /* SECTION */
-    .sec-wrap{max-width:1060px;margin:0 auto;padding:28px 12px 0}
-    .sec-header{display:flex;align-items:flex-end;gap:10px;margin-bottom:14px}
-    .sec-title{font-family:'DM Serif Display',Georgia,serif;font-size:20px;color:#e8dcc8;line-height:1}
-    .sec-line{flex:1;height:1px;background:linear-gradient(90deg,#4a3e28 0%,transparent 100%);margin-bottom:4px}
-    .sec-count{font-size:11px;color:var(--muted);font-weight:500;margin-bottom:5px;white-space:nowrap}
+    /* HERO */
+    .hero-wrap { max-width:900px; margin:28px auto 0; padding:0 12px; }
+    .hero-card { display:flex; align-items:stretch; background:#161410; border-radius:var(--radius-lg); overflow:hidden; border:1.5px solid rgba(233,168,37,.2); box-shadow:0 8px 40px rgba(0,0,0,.5); position:relative; transition:var(--t); min-height:210px; }
+    .hero-card:hover { transform:translateY(-2px); box-shadow:0 12px 50px rgba(0,0,0,.6); }
+    .hero-badge-label { position:absolute; top:14px; left:14px; background:var(--gold); color:var(--ink); font-size:10px; font-weight:700; letter-spacing:.7px; text-transform:uppercase; padding:4px 12px; border-radius:20px; z-index:10; }
+    .hero-img { width:44%; object-fit:cover; flex-shrink:0; aspect-ratio:1/1; min-height:210px; }
+    .hero-body { flex:1; padding:24px 18px 20px; display:flex; flex-direction:column; justify-content:center; gap:10px; min-width:0; }
+    .hero-label { font-size:10px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; color:var(--gold); }
+    .hero-title { font-family:'DM Serif Display',Georgia,serif; font-size:18px; color:#f0e8d4; line-height:1.35; }
+    .hero-stars { display:flex; gap:2px; align-items:center; }
+    .star { color:var(--gold); font-size:14px; }
+    .hero-price-row { display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; }
+    .hero-price { font-size:26px; font-weight:700; color:var(--gold-light); font-family:'DM Serif Display',Georgia,serif; }
+    .hero-was { font-size:13px; color:var(--muted); text-decoration:line-through; }
+    .hero-save { font-size:11px; font-weight:700; background:var(--green); color:#fff; padding:3px 8px; border-radius:20px; }
+    .hero-desc { font-size:12px; color:#7a7060; line-height:1.6; }
+    .hero-btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; background:linear-gradient(135deg,var(--gold-light),var(--gold)); color:var(--ink); font-weight:700; font-size:14px; padding:13px 20px; border-radius:var(--radius-sm); transition:var(--t); width:fit-content; min-height:44px; }
+    .hero-btn:active { opacity:.85; transform:scale(.98); }
+    .hero-dots { display:flex; gap:8px; justify-content:center; margin-top:14px; }
+    .hero-dot { width:10px; height:10px; border-radius:50%; background:#3a3428; border:none; cursor:pointer; transition:var(--t); padding:0; min-width:10px; min-height:10px; }
+    .hero-dot.active { background:var(--gold); width:26px; border-radius:5px; }
 
-    /* MEGA SLIDER */
-    .mega-wrap{max-width:1060px;margin:20px auto 0;padding:0 12px}
-    .mega-card{display:flex;align-items:stretch;background:#1a1710;border-radius:var(--radius-lg);overflow:hidden;min-height:190px;position:relative;box-shadow:0 8px 40px rgba(0,0,0,.5);transition:var(--t);border:1.5px solid rgba(233,168,37,.25)}
-    .mega-card:hover{box-shadow:0 12px 50px rgba(0,0,0,.6);transform:translateY(-1px)}
-    .mega-badge{position:absolute;top:14px;left:14px;background:var(--gold);color:var(--ink);font-size:10px;font-weight:700;letter-spacing:.7px;text-transform:uppercase;padding:4px 12px;border-radius:20px;z-index:10}
-    .mega-img{width:42%;object-fit:cover;flex-shrink:0;min-height:190px}
-    .mega-body{flex:1;padding:24px 18px 18px;display:flex;flex-direction:column;justify-content:center;gap:9px;min-width:0}
-    .mega-label{font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--gold)}
-    .mega-title{font-family:'DM Serif Display',Georgia,serif;font-size:17px;color:#f0e8d4;line-height:1.3}
-    .mega-stars{display:flex;gap:2px}
-    .star{color:var(--gold);font-size:13px}
-    .mega-price-row{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
-    .mega-price{font-size:26px;font-weight:700;color:var(--gold-light);font-family:'DM Serif Display',Georgia,serif}
-    .mega-was{font-size:13px;color:var(--muted);text-decoration:line-through}
-    .mega-save{font-size:11px;font-weight:700;background:var(--green);color:#fff;padding:2px 7px;border-radius:20px}
-    .mega-desc{font-size:12px;color:#8a8070;line-height:1.55}
-    .mega-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,var(--gold-light),var(--gold));color:var(--ink);font-weight:700;font-size:13px;padding:12px 18px;border-radius:var(--radius-sm);transition:var(--t);letter-spacing:.3px;width:fit-content}
-    .mega-btn:hover{filter:brightness(1.07);transform:translateY(-1px)}
-    .mega-dots{display:flex;gap:7px;margin-top:12px;justify-content:center}
-    .mega-dot{width:7px;height:7px;border-radius:50%;background:#4a4030;border:none;cursor:pointer;transition:var(--t);padding:0}
-    .mega-dot.active{background:var(--gold);width:22px;border-radius:4px}
+    /* PROOF */
+    .proof-wrap { max-width:900px; margin:28px auto 0; padding:0 12px; }
+    .proof-inner { background:linear-gradient(135deg,#131110,#1c1810); border-radius:var(--radius-md); padding:18px 16px; display:flex; align-items:center; justify-content:space-around; flex-wrap:wrap; gap:12px; border:1px solid #2a2418; }
+    .proof-stat { text-align:center; }
+    .proof-num { font-family:'DM Serif Display',Georgia,serif; font-size:24px; color:var(--gold-light); }
+    .proof-label { font-size:10px; color:#5a5448; margin-top:3px; text-transform:uppercase; letter-spacing:.6px; font-weight:600; }
+    .proof-div { width:1px; height:36px; background:rgba(255,255,255,.05); }
 
-    /* PROOF STRIP */
-    .proof-strip{max-width:1060px;margin:24px auto 0;padding:0 12px}
-    .proof-inner{background:linear-gradient(135deg,#141210 0%,#1e1a10 100%);border-radius:var(--radius-md);padding:18px 16px;display:flex;align-items:center;justify-content:space-around;flex-wrap:wrap;gap:14px;border:1px solid #2e2820}
-    .proof-stat{text-align:center}
-    .proof-num{font-family:'DM Serif Display',Georgia,serif;font-size:24px;color:var(--gold-light);line-height:1}
-    .proof-label{font-size:10px;color:#6a6055;margin-top:3px;text-transform:uppercase;letter-spacing:.6px;font-weight:600}
-    .proof-divider{width:1px;height:36px;background:rgba(255,255,255,.06)}
+    /* SECTION HEADER */
+    .sec-wrap { max-width:900px; margin:36px auto 0; padding:0 12px; }
+    .sec-header { display:flex; align-items:center; gap:10px; margin-bottom:14px; }
+    .sec-title { font-size:20px; color:#ede3cc; white-space:nowrap; }
+    .sec-line { flex:1; height:1px; background:linear-gradient(90deg,#4a3e28,transparent); }
 
     /* GRID */
-    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;max-width:1060px;margin:0 auto;padding:0 12px}
-    @media(min-width:580px){.grid{grid-template-columns:repeat(3,1fr)}}
-    @media(min-width:860px){.grid{grid-template-columns:repeat(4,1fr)}}
+    .grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; max-width:900px; margin:0 auto; padding:0 12px; }
+    @media(min-width:560px){ .grid { grid-template-columns:repeat(3,1fr); } }
+    @media(min-width:820px){ .grid { grid-template-columns:repeat(4,1fr); } }
 
     /* CARD */
-    .card{background:var(--card-bg);border-radius:var(--radius-md);overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--shadow-card);border:1px solid var(--card-border);position:relative;transition:var(--t)}
-    .card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lift)}
-    .card-img-wrap{position:relative;overflow:hidden;background:#1e1b14}
-    .card-img{width:100%;height:148px;object-fit:cover;transition:transform .35s ease}
-    .card:hover .card-img{transform:scale(1.04)}
-    .card-amz-badge{position:absolute;bottom:8px;left:8px;background:rgba(20,18,14,.88);border:1px solid #3a3020;border-radius:6px;padding:3px 7px;font-size:9px;font-weight:700;color:#c8bfaa;letter-spacing:.4px;text-transform:uppercase}
-    .ribbon{position:absolute;top:10px;right:-1px;background:var(--red);color:#fff;font-size:9px;font-weight:700;letter-spacing:.5px;padding:3px 9px 3px 8px;border-radius:3px 0 0 3px;text-transform:uppercase}
-    .ribbon::after{content:'';position:absolute;right:0;bottom:-5px;border-top:5px solid #a02020;border-right:5px solid transparent}
-    .card-body{padding:11px;flex:1;display:flex;flex-direction:column;gap:6px}
-    .card-stars{display:flex;align-items:center;gap:3px}
-    .card-stars .star{font-size:11px}
-    .card-reviews{font-size:10px;color:var(--muted)}
-    .card-title{font-size:12px;font-weight:600;line-height:1.38;color:#d8cfba;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-    .card-price-row{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;margin-top:2px}
-    .card-price{font-family:'DM Serif Display',Georgia,serif;font-size:20px;color:#e06060;line-height:1}
-    .card-was{font-size:11px;color:var(--muted);text-decoration:line-through}
-    .card-trust{font-size:10px;color:var(--green);font-weight:600;display:flex;align-items:center;gap:4px}
-    .btn-amz{display:flex;align-items:center;justify-content:center;gap:6px;background:linear-gradient(135deg,var(--gold-light) 0%,var(--gold) 100%);color:var(--ink);padding:11px 10px;border-radius:var(--radius-sm);font-weight:700;font-size:11px;margin-top:auto;letter-spacing:.3px;transition:var(--t)}
-    .btn-amz:hover{filter:brightness(1.07);transform:translateY(-1px);box-shadow:0 4px 12px rgba(233,168,37,.35)}
-    .btn-amz::before{content:"🛒";font-size:13px}
+    .card { background:var(--card-bg); border-radius:var(--radius-md); overflow:hidden; display:flex; flex-direction:column; box-shadow:var(--shadow-card); border:1px solid var(--card-border); position:relative; transition:var(--t); }
+    .card:hover { transform:translateY(-3px); box-shadow:var(--shadow-lift); }
+    .card-img-wrap { position:relative; overflow:hidden; background:#1e1b14; aspect-ratio:4/3; }
+    .card-img { width:100%; height:100%; object-fit:cover; transition:transform .35s ease; }
+    .card:hover .card-img { transform:scale(1.05); }
+    .card-amz-badge { position:absolute; bottom:8px; left:8px; background:rgba(14,12,8,.88); border:1px solid #3a3020; border-radius:6px; padding:4px 8px; font-size:9px; font-weight:700; color:#b0a890; letter-spacing:.4px; text-transform:uppercase; }
+    .ribbon { position:absolute; top:10px; right:0; background:var(--red); color:#fff; font-size:9px; font-weight:700; letter-spacing:.4px; padding:4px 10px; border-radius:3px 0 0 3px; text-transform:uppercase; }
+    .card-body { padding:12px; flex:1; display:flex; flex-direction:column; gap:6px; }
+    .card-stars-row { display:flex; align-items:center; gap:4px; }
+    .card-reviews { font-size:10px; color:var(--muted); }
+    .card-title { font-size:12px; font-weight:600; line-height:1.45; color:#d0c7b0; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; flex:1; }
+    .card-bottom { display:flex; align-items:center; gap:6px; margin-top:4px; flex-wrap:wrap; }
+    .card-price { font-size:15px; font-weight:700; color:var(--gold-light); }
+    .card-save { font-size:10px; font-weight:700; background:var(--green); color:#fff; padding:2px 7px; border-radius:12px; }
+    .btn-amz { display:flex; align-items:center; justify-content:center; gap:6px; background:linear-gradient(135deg,var(--gold-light),var(--gold)); color:var(--ink); padding:12px 10px; border-radius:var(--radius-sm); font-weight:700; font-size:12px; margin-top:auto; min-height:44px; transition:var(--t); }
+    .btn-amz:active { opacity:.85; }
 
     /* FOOTER */
-    footer{background:#0a0908;color:#4a4438;font-size:11px;text-align:center;padding:28px 20px;margin-top:40px;line-height:1.8;border-top:1px solid #1e1a12}
-    footer strong{color:var(--gold);font-family:'DM Serif Display',Georgia,serif;font-size:15px}
-    footer a{color:var(--gold)}
+    footer { background:#0a0908; color:#4a4438; font-size:11px; text-align:center; padding:40px 20px; margin-top:60px; line-height:1.9; border-top:1px solid #1a1610; }
+    footer strong { color:var(--gold); font-size:15px; display:block; margin-bottom:6px; }
+    footer a { color:#7a6a48; }
 
     /* REVEAL */
-    .reveal{opacity:0;transform:translateY(18px);transition:opacity .5s ease,transform .5s ease}
-    .reveal.visible{opacity:1;transform:translateY(0)}
+    .reveal { opacity:0; transform:translateY(14px); transition:opacity .45s ease, transform .45s ease; }
+    .reveal.visible { opacity:1; transform:none; }
 
-    /* MOBILE */
-    @media(max-width:500px){
-      .mega-card{min-height:160px}
-      .mega-img{width:38%;min-height:160px}
-      .mega-body{padding:16px 12px 14px;gap:7px}
-      .mega-title{font-size:14px}
-      .mega-price{font-size:20px}
-      .mega-btn{font-size:12px;padding:10px 14px}
-      .trust-bar{gap:12px}
-      .proof-divider{display:none}
-      .card-img{height:130px}
-      .grid{gap:8px}
+    @media(max-width:500px) {
+      .hero-card { flex-direction:column; }
+      .hero-img { width:100%; min-height:200px; aspect-ratio:16/9; }
+      .hero-body { padding:18px 14px; }
+      .hero-price { font-size:22px; }
     }
-    :focus-visible{outline:3px solid var(--gold);outline-offset:3px}
   </style>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-V3X8NWXJR2"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-V3X8NWXJR2");</script></head>
+
+</head>
 <body>
 
 <div class="ticker-wrap" aria-hidden="true">
-  <div class="ticker-inner" id="ticker">
+  <div class="ticker-inner">
     <span>HANDPLOCKAT FÖR SMARTA HEM</span>
     <span>SNABB LEVERANS VIA AMAZON.SE</span>
     <span>TRYGG HANDEL – AMAZONS RETURPOLICY</span>
@@ -158,216 +150,207 @@
 </header>
 
 <div class="trust-bar" aria-label="Förtroendesignaler">
-  <div class="trust-item">
-    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2a9d5c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-    Säker betalning via Amazon
-  </div>
-  <div class="trust-item">
-    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#e9a825" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-    Snabb leverans
-  </div>
-  <div class="trust-item">
-    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2a9d5c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-    Amazon returgaranti
-  </div>
-  <div class="trust-item">
-    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#e9a825" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-    Handplockat av experter
-  </div>
+  <div class="trust-item">🔒 Säker betalning</div>
+  <div class="trust-item">⚡ Snabb leverans</div>
+  <div class="trust-item">↩️ Amazon returgaranti</div>
 </div>
 
-<!-- MEGA SLIDER -->
-<div class="mega-wrap">
-  <a href="https://amzn.to/4dlO5ck" target="_blank" rel="noopener noreferrer"
-     class="mega-card reveal" id="megaLink" aria-label="Veckans fynd på Amazon">
-    <span class="mega-badge">⚡ Veckans Fynd</span>
-    <img class="mega-img" id="megaImg" src="img/IMG_9393.jpg" alt="INIU Trådlöst Laddningsstativ 15W"
-         width="400" height="200"
-         onerror="this.src='https://placehold.co/400x200/1e1c18/e9a825?text=Fynd';this.onerror=null">
-    <div class="mega-body">
-      <div class="mega-label" id="megaLabel">Veckans erbjudande</div>
-      <h1 class="mega-title" id="megaTitle">INIU Trådlöst Laddningsstativ 15W</h1>
-      <div class="mega-stars" aria-label="4.5 av 5 stjärnor">
-        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star" style="opacity:.4">★</span>
-        <span style="font-size:10px;color:#6a6055;margin-left:4px">4.5 / 5</span>
+<!-- HERO -->
+
+<div class="hero-wrap">
+  <a href="#" class="hero-card reveal" id="heroLink" target="_blank" rel="noopener sponsored" aria-label="Veckans fynd">
+    <span class="hero-badge-label">⚡ Veckans Fynd</span>
+    <img class="hero-img" id="heroImg" src="img/IMG_9393.jpg" alt="" width="400" height="400" fetchpriority="high">
+    <div class="hero-body">
+      <div class="hero-label">Veckans erbjudande</div>
+      <h1 class="hero-title" id="heroTitle"></h1>
+      <div class="hero-stars" id="heroStars"></div>
+      <div class="hero-price-row">
+        <div class="hero-price" id="heroPrice"></div>
+        <div class="hero-was" id="heroWas"></div>
+        <div class="hero-save" id="heroSave"></div>
       </div>
-      <div class="mega-price-row">
-        <div class="mega-price" id="megaPrice">~249 kr</div>
-        <div class="mega-was" id="megaWas">~349 kr</div>
-        <div class="mega-save" id="megaSave">−29%</div>
-      </div>
-      <div class="mega-desc" id="megaDesc">15W snabb trådlös laddning · Självlysande LED · Passar iPhone &amp; Samsung</div>
-      <div class="mega-btn">🛒 Se på Amazon.se</div>
+      <div class="hero-desc" id="heroDesc"></div>
+      <div class="hero-btn">🛒 Se på Amazon.se</div>
     </div>
   </a>
-  <div class="mega-dots" role="tablist" aria-label="Slider-navigation">
-    <button class="mega-dot active" data-index="0" aria-label="Fynd 1" aria-selected="true" role="tab"></button>
-    <button class="mega-dot" data-index="1" aria-label="Fynd 2" aria-selected="false" role="tab"></button>
-    <button class="mega-dot" data-index="2" aria-label="Fynd 3" aria-selected="false" role="tab"></button>
-    <button class="mega-dot" data-index="3" aria-label="Fynd 4" aria-selected="false" role="tab"></button>
+  <div class="hero-dots" id="heroDots" role="tablist"></div>
+</div>
+
+<!-- PROOF -->
+
+<div class="proof-wrap">
+  <div class="proof-inner reveal">
+    <div class="proof-stat"><div class="proof-num">4 800+</div><div class="proof-label">Sålda produkter</div></div>
+    <div class="proof-div"></div>
+    <div class="proof-stat"><div class="proof-num">4.6 ★</div><div class="proof-label">Amazon Snittbetyg</div></div>
+    <div class="proof-div"></div>
+    <div class="proof-stat"><div class="proof-num">100%</div><div class="proof-label">Säker handel</div></div>
   </div>
 </div>
 
-<!-- PROOF STRIP -->
-<div class="proof-strip reveal">
-  <div class="proof-inner">
-    <div class="proof-stat"><div class="proof-num">4 800+</div><div class="proof-label">Sålda produkter via Amazon</div></div>
-    <div class="proof-divider"></div>
-    <div class="proof-stat"><div class="proof-num">4.6 ★</div><div class="proof-label">Snittbetyg på Amazon</div></div>
-    <div class="proof-divider"></div>
-    <div class="proof-stat"><div class="proof-num">100%</div><div class="proof-label">Säker handel via Amazon</div></div>
-    <div class="proof-divider"></div>
-    <div class="proof-stat"><div class="proof-num">Fri</div><div class="proof-label">Retur via Amazon Prime</div></div>
-  </div>
-</div>
+<!-- SMARTA HEM -->
 
-<!-- SEKTION 1 -->
 <div class="sec-wrap">
   <div class="sec-header">
     <h2 class="sec-title">🏠 Smarta Hem &amp; Teknik</h2>
     <div class="sec-line"></div>
-    <div class="sec-count">6 produkter</div>
   </div>
 </div>
-<div class="grid" id="grid-smart-hem"></div>
+<div class="grid" id="grid-hem"></div>
 
-<!-- SEKTION 2 -->
+<!-- BELYSNING -->
+
 <div class="sec-wrap">
   <div class="sec-header">
     <h2 class="sec-title">💡 Belysning &amp; Trädgård</h2>
     <div class="sec-line"></div>
-    <div class="sec-count">6 produkter</div>
   </div>
 </div>
-<div class="grid" id="grid-belysning"></div>
+<div class="grid" id="grid-bel"></div>
 
 <footer>
-  <p><strong>All-in1 ShopStar</strong></p>
-  <p style="margin-top:8px">Vi är deltagare i Amazons affiliateprogram. Som Amazon Associate tjänar vi provision<br>på kvalificerade köp – utan extra kostnad för dig.</p>
-  <p style="margin-top:6px">Priser och tillgänglighet kan ändras. Kontrollera alltid aktuellt pris på <a href="https://www.amazon.se" target="_blank" rel="noopener noreferrer">Amazon.se</a>.</p>
-  <p style="margin-top:10px;color:#2a2520">© 2025 All-in1 ShopStar</p>
+  <strong>All-in1 ShopStar</strong>
+  <p>Vi är deltagare i Amazons affiliateprogram.<br>
+  Priser kan ändras – kontrollera alltid på <a href="https://www.amazon.se" target="_blank" rel="noopener">Amazon.se</a>.</p>
+  <p style="margin-top:10px;">© 2026 All-in1 ShopStar</p>
 </footer>
 
 <script>
-'use strict';
+/* ═══════════════════════════════════════════════════════════
+   HERO-PRODUKTER
+   Lägg till fler objekt för fler dots i slidern
+═══════════════════════════════════════════════════════════ */
+const heroProducts = [
+  {
+    title: 'INIU Trådlöst Laddningsstativ 15W',
+    price: '~249 kr',
+    was:   '~349 kr',
+    save:  '−29%',
+    stars: 4.5,
+    img:   'img/IMG_9393.jpg',
+    link:  'https://amzn.to/4dlO5ck',
+    alt:   'INIU Trådlöst Laddningsstativ 15W',
+    desc:  '15W snabb trådlös laddning · Självlysande LED · Passar iPhone &amp; Samsung'
+  }
+  // Lägg till fler hero-produkter här
+];
 
-const products = {
-  smartHem: [
-    { title:'Tapo Nano Smart Plug WiFi med energimätning', price:'249 kr', was:'', save:'', stars:4.5, reviews:1842, img:'img/tapo-plug1.jpg', link:'https://amzn.to/47uRuBM', alt:'Tapo Nano Smart Plug WiFi-kontakt', trust:'Fri frakt med Prime', ribbon:'' },
-    { title:'Meross 2-pack mini-WiFi-uttag 16A', price:'299 kr', was:'399 kr', save:'−25%', stars:4.4, reviews:963, img:'img/smart-plug1.jpg', link:'https://amzn.to/4bTg5le', alt:'Meross mini WiFi-uttag 2-pack', trust:'Populärt val', ribbon:'POPULÄR' },
-    { title:'SONOFF ZigBee Temp- & Fuktighetssensor', price:'149 kr', was:'', save:'', stars:4.3, reviews:527, img:'img/temp-humidity1.jpg', link:'https://amzn.to/483lx3F', alt:'SONOFF ZigBee temperatur- och fuktighetssensor', trust:'Snabb leverans', ribbon:'' },
-    { title:'Tapo C200 Övervakningskamera 1080p', price:'349 kr', was:'449 kr', save:'−22%', stars:4.6, reviews:3210, img:'img/Cam3.jpg', link:'https://amzn.to/4sAk653', alt:'Tapo C200 övervakningskamera 1080p', trust:'Bästsäljare', ribbon:'BÄSTSÄLJARE' },
-    { title:'Amazon Fire TV Stick HD med Alexa', price:'399 kr', was:'', save:'', stars:4.7, reviews:8402, img:'img/fire3.jpg', link:'https://amzn.to/4bPEqrR', alt:'Amazon Fire TV Stick HD', trust:'Amazon-produkt', ribbon:'' },
-    { title:'Govee Alexa Smart Bulb E27 2-pack', price:'229 kr', was:'299 kr', save:'−23%', stars:4.4, reviews:742, img:'img/hey-google.jpg', link:'https://amzn.to/4bWKNd3', alt:'Govee smarta E27-glödlampor 2-pack', trust:'Fri frakt med Prime', ribbon:'ERBJUDANDE' }
+/* ═══════════════════════════════════════════════════════════
+   GRID-PRODUKTER
+   hem[] = Smarta Hem & Teknik
+   bel[] = Belysning & Trädgård
+═══════════════════════════════════════════════════════════ */
+const gridProducts = {
+  hem: [
+    { title:'Tapo Nano Smart Plug WiFi med energimätning', price:'249 kr', was:'', save:'', stars:4.5, reviews:1842, img:'img/tapo-plug1.jpg', link:'https://amzn.to/47uRuBM', alt:'Tapo Nano Smart Plug', ribbon:'' },
+    { title:'Meross 2-pack mini-WiFi-uttag 16A', price:'299 kr', was:'399 kr', save:'−25%', stars:4.4, reviews:963, img:'img/smart-plug1.jpg', link:'https://amzn.to/4bTg5le', alt:'Meross mini WiFi-uttag 2-pack', ribbon:'POPULÄR' },
+    { title:'SONOFF ZigBee Temp- & Fuktighetssensor', price:'149 kr', was:'', save:'', stars:4.3, reviews:527, img:'img/temp-humidity1.jpg', link:'https://amzn.to/483lx3F', alt:'SONOFF ZigBee sensor', ribbon:'' },
+    { title:'Tapo C200 Övervakningskamera 1080p', price:'349 kr', was:'449 kr', save:'−22%', stars:4.6, reviews:3210, img:'img/Cam3.jpg', link:'https://amzn.to/4sAk653', alt:'Tapo C200 kamera', ribbon:'BÄSTSÄLJARE' },
+    { title:'Amazon Fire TV Stick HD med Alexa', price:'399 kr', was:'', save:'', stars:4.7, reviews:8402, img:'img/fire3.jpg', link:'https://amzn.to/4bPEqrR', alt:'Amazon Fire TV Stick HD', ribbon:'' },
+    { title:'Govee Alexa Smart Bulb E27 2-pack', price:'229 kr', was:'299 kr', save:'−23%', stars:4.4, reviews:742, img:'img/hey-google.jpg', link:'https://amzn.to/4bWKNd3', alt:'Govee Smart Bulb E27', ribbon:'ERBJUDANDE' }
   ],
-  belysning: [
-    { title:'Govee WiFi LED-strip 10m RGB', price:'349 kr', was:'499 kr', save:'−30%', stars:4.5, reviews:2190, img:'img/led-app1.jpg', link:'https://amzn.to/3PDCWJU', alt:'Govee WiFi LED-strip 10m RGB', trust:'Bästsäljare', ribbon:'BÄSTSÄLJARE' },
-    { title:'12-pack Solcellslampor IP67', price:'179 kr', was:'', save:'', stars:4.2, reviews:381, img:'img/garden-light.jpg', link:'https://amzn.to/4s3wCca', alt:'Solcellslampor IP67 12-pack', trust:'Snabb leverans', ribbon:'' },
-    { title:'Automatisk Tvåldispenser 380ml', price:'199 kr', was:'249 kr', save:'−20%', stars:4.3, reviews:614, img:'img/soap-foam.jpg', link:'https://amzn.to/4vc5udY', alt:'Beröringsfri automatisk tvåldispenser', trust:'Fri frakt med Prime', ribbon:'ERBJUDANDE' },
-    { title:'BroadLink RM4 Mini IR-fjärrkontroll', price:'299 kr', was:'', save:'', stars:4.4, reviews:1073, img:'img/alexa-controller.jpg', link:'https://amzn.to/4dOfgfU', alt:'BroadLink RM4 Mini IR-fjärrkontroll', trust:'Populärt val', ribbon:'' },
-    { title:'PChero Solcellsbevattningssystem', price:'349 kr', was:'449 kr', save:'−22%', stars:4.1, reviews:288, img:'img/flower-drip.jpg', link:'https://amzn.to/4thJsVq', alt:'PChero automatiskt bevattningssystem', trust:'Snabb leverans', ribbon:'' },
-    { title:'Bärbar Mini-luftkylare USB AC', price:'249 kr', was:'', save:'', stars:4.0, reviews:195, img:'img/usb-aircool.jpg', link:'https://amzn.to/4sCZ3ia', alt:'Bärbar USB-driven mini-luftkylare', trust:'Fri frakt med Prime', ribbon:'' }
+  bel: [
+    { title:'Govee WiFi LED-strip 10m RGB', price:'349 kr', was:'499 kr', save:'−30%', stars:4.5, reviews:2190, img:'img/led-app1.jpg', link:'https://amzn.to/3PDCWJU', alt:'Govee LED-strip 10m', ribbon:'BÄSTSÄLJARE' },
+    { title:'12-pack Solcellslampor IP67', price:'179 kr', was:'', save:'', stars:4.2, reviews:381, img:'img/garden-light.jpg', link:'https://amzn.to/4s3wCca', alt:'Solcellslampor IP67', ribbon:'' },
+    { title:'Automatisk Tvåldispenser 380ml', price:'199 kr', was:'249 kr', save:'−20%', stars:4.3, reviews:614, img:'img/soap-foam.jpg', link:'https://amzn.to/4vc5udY', alt:'Automatisk tvåldispenser', ribbon:'ERBJUDANDE' },
+    { title:'BroadLink RM4 Mini IR-fjärrkontroll', price:'299 kr', was:'', save:'', stars:4.4, reviews:1073, img:'img/alexa-controller.jpg', link:'https://amzn.to/4dOfgfU', alt:'BroadLink RM4 Mini', ribbon:'' },
+    { title:'PChero Solcellsbevattningssystem', price:'349 kr', was:'449 kr', save:'−22%', stars:4.1, reviews:288, img:'img/flower-drip.jpg', link:'https://amzn.to/4thJsVq', alt:'PChero bevattningssystem', ribbon:'' },
+    { title:'Bärbar Mini-luftkylare USB', price:'249 kr', was:'', save:'', stars:4.0, reviews:195, img:'img/usb-aircool.jpg', link:'https://amzn.to/4sCZ3ia', alt:'USB mini-luftkylare', ribbon:'' }
   ]
 };
 
+/* ── STJÄRNOR ────────────────────────────────────────────── */
 function starsHTML(r) {
   let h = '';
   for (let i = 1; i <= 5; i++) {
-    const op = i <= Math.floor(r) ? 1 : (i - r < 1 && i - r > 0 ? 0.4 : 0.15);
+    const op = i <= Math.floor(r) ? 1 : (r % 1 > 0 && i === Math.ceil(r) ? 0.4 : 0.12);
     h += `<span class="star" style="opacity:${op}">★</span>`;
   }
   return h;
 }
 
+/* ── HERO SLIDER ─────────────────────────────────────────── */
+let heroIndex = 0, heroTimer = null;
+
+function showHero(i) {
+  const p = heroProducts[i];
+  heroIndex = i;
+  document.getElementById('heroLink').href         = p.link;
+  document.getElementById('heroImg').src           = p.img;
+  document.getElementById('heroImg').alt           = p.alt;
+  document.getElementById('heroTitle').textContent = p.title;
+  document.getElementById('heroStars').innerHTML   = starsHTML(p.stars);
+  document.getElementById('heroPrice').textContent = p.price;
+  document.getElementById('heroWas').textContent   = p.was || '';
+  document.getElementById('heroSave').textContent  = p.save || '';
+  document.getElementById('heroDesc').innerHTML    = p.desc || '';
+  document.querySelectorAll('.hero-dot').forEach((d, idx) => {
+    d.classList.toggle('active', idx === i);
+    d.setAttribute('aria-selected', String(idx === i));
+  });
+}
+
+function buildDots() {
+  const wrap = document.getElementById('heroDots');
+  heroProducts.forEach((_, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'hero-dot' + (i === 0 ? ' active' : '');
+    btn.setAttribute('role', 'tab');
+    btn.setAttribute('aria-label', `Fynd ${i + 1}`);
+    btn.setAttribute('aria-selected', String(i === 0));
+    btn.addEventListener('click', () => {
+      clearInterval(heroTimer);
+      showHero(i);
+      if (heroProducts.length > 1) heroTimer = setInterval(() => showHero((heroIndex + 1) % heroProducts.length), 5000);
+    });
+    wrap.appendChild(btn);
+  });
+}
+
+buildDots();
+showHero(0);
+if (heroProducts.length > 1) heroTimer = setInterval(() => showHero((heroIndex + 1) % heroProducts.length), 5000);
+
+/* ── PRODUCT CARDS ───────────────────────────────────────── */
 function createCard(p) {
-  const el = document.createElement('article');
-  el.className = 'card reveal';
-  el.innerHTML = `
+  const art = document.createElement('article');
+  art.className = 'card reveal';
+  art.innerHTML = `
     <div class="card-img-wrap">
       ${p.ribbon ? `<div class="ribbon">${p.ribbon}</div>` : ''}
-      <img class="card-img" src="${p.img}" alt="${p.alt}" loading="lazy" width="300" height="148"
-           onerror="this.src='https://placehold.co/300x148/1e1b14/b87c0d?text=Bild+saknas';this.onerror=null">
+      <img class="card-img" src="${p.img}" alt="${p.alt}" loading="lazy" decoding="async" width="300" height="225">
       <div class="card-amz-badge">amazon.se</div>
     </div>
     <div class="card-body">
-      <div class="card-stars" aria-label="${p.stars} av 5 stjärnor">
-        ${starsHTML(p.stars)}
-        <span class="card-reviews">(${p.reviews.toLocaleString('sv-SE')})</span>
+      <div class="card-stars-row">${starsHTML(p.stars)}<span class="card-reviews">(${p.reviews.toLocaleString('sv')})</span></div>
+      <h3 class="card-title">${p.title}</h3>
+      <div class="card-bottom">
+        <span class="card-price">${p.price}</span>
+        ${p.save ? `<span class="card-save">${p.save}</span>` : ''}
       </div>
-      <h2 class="card-title">${p.title}</h2>
-      <div class="card-price-row">
-        <div class="card-price">${p.price}</div>
-        ${p.was ? `<span class="card-was">${p.was}</span>` : ''}
-        ${p.save ? `<span class="mega-save">${p.save}</span>` : ''}
-      </div>
-      <div class="card-trust">
-        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-        ${p.trust}
-      </div>
-      <a href="${p.link}" class="btn-amz" target="_blank" rel="noopener noreferrer"
-         aria-label="${p.title} – Köp på Amazon.se">
-        Köp på Amazon.se
-      </a>
+      <a href="${p.link}" class="btn-amz" target="_blank" rel="noopener sponsored">🛒 Se på Amazon</a>
     </div>`;
-  return el;
+  return art;
 }
 
-function renderGrid(id, items) {
-  const g = document.getElementById(id);
-  if (!g) return;
-  const f = document.createDocumentFragment();
-  items.forEach(p => f.appendChild(createCard(p)));
-  g.appendChild(f);
-}
-
-renderGrid('grid-smart-hem', products.smartHem);
-renderGrid('grid-belysning', products.belysning);
-
-/* MEGA SLIDER */
-const megaItems = [
-  { title:'INIU Trådlöst Laddningsstativ 15W', label:'Veckans erbjudande', price:'~249 kr', was:'~349 kr', save:'−29%', desc:'15W snabb trådlös laddning · Självlysande LED · Passar iPhone &amp; Samsung', img:'img/IMG_9393.jpg', link:'https://amzn.to/4dlO5ck', alt:'INIU trådlöst laddningsstativ 15W' },
-  { title:'Tapo C200 Övervakningskamera 1080p', label:'Bästsäljare', price:'349 kr', was:'449 kr', save:'−22%', desc:'1080p Full HD · Nattsyn · Rörelsedetektering · App-styrning', img:'img/Cam3.jpg', link:'https://amzn.to/4sAk653', alt:'Tapo C200 övervakningskamera' },
-  { title:'Amazon Fire TV Stick HD med Alexa', label:'Amazon-favorit', price:'399 kr', was:'', save:'', desc:'Streama Netflix, Disney+, YouTube och mer direkt till din TV.', img:'img/fire3.jpg', link:'https://amzn.to/4bPEqrR', alt:'Amazon Fire TV Stick HD' },
-  { title:'Govee WiFi LED-strip 10m RGB', label:'Populärt val', price:'349 kr', was:'499 kr', save:'−30%', desc:'10m smart RGB-belysning med musiksynkronisering &amp; app-styrning.', img:'img/led-app1.jpg', link:'https://amzn.to/3PDCWJU', alt:'Govee LED-strip 10m RGB' }
-];
-
-let idx = 0, sliderInt = null;
-const dots = document.querySelectorAll('.mega-dot');
-
-function updateMega(i) {
-  const m = megaItems[i];
-  document.getElementById('megaLabel').textContent = m.label;
-  document.getElementById('megaTitle').textContent = m.title;
-  document.getElementById('megaPrice').textContent = m.price;
-  document.getElementById('megaWas').textContent   = m.was;
-  document.getElementById('megaSave').textContent  = m.save;
-  document.getElementById('megaDesc').innerHTML    = m.desc;
-  const img  = document.getElementById('megaImg');
-  const link = document.getElementById('megaLink');
-  img.src = m.img; img.alt = m.alt;
-  link.href = m.link;
-  link.setAttribute('aria-label', `${m.label}: ${m.title} – ${m.price} på Amazon`);
-  dots.forEach((d, j) => { d.classList.toggle('active', j===i); d.setAttribute('aria-selected', String(j===i)); });
-  idx = i;
-}
-
-function startSlider() { sliderInt = setInterval(() => updateMega((idx+1) % megaItems.length), 15000); }
-function stopSlider()  { clearInterval(sliderInt); }
-dots.forEach(d => d.addEventListener('click', () => { stopSlider(); updateMega(+d.dataset.index); startSlider(); }));
-startSlider();
-
-/* SCROLL REVEAL */
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
-}, { threshold: 0.07 });
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-
-/* PAUSA VID DOLD SIDA */
-const ticker = document.getElementById('ticker');
-document.addEventListener('visibilitychange', () => {
-  if (document.hidden) { ticker.classList.add('paused'); stopSlider(); }
-  else                  { ticker.classList.remove('paused'); startSlider(); }
+['hem','bel'].forEach(key => {
+  const g = document.getElementById('grid-' + key);
+  gridProducts[key].forEach(p => g.appendChild(createCard(p)));
 });
+
+/* ── SCROLL REVEAL (körs efter DOM är klar) ──────────────── */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
+
+<!-- Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V3X8NWXJR2"></script>
+
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-V3X8NWXJR2');</script>
+
 </body>
 </html>
